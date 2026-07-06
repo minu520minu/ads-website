@@ -15,16 +15,45 @@
   --color-lumio-teal-light: #E0F8F4;
   --color-lumio-surface: #F7F8FC;
   --color-lumio-white: #ffffff;
+
+  --animate-scroll: scroll 35s linear infinite;
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 @layer base {
   body {
     @apply bg-lumio-surface text-lumio-ink font-sans antialiased;
     scroll-behavior: smooth;
+    cursor: default;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+    cursor: default;
+  }
+
+  p, span, li, div {
+    cursor: default;
+  }
+
+  input, textarea {
+    cursor: text !important;
+  }
+
+  button, a, [role="button"], .cursor-pointer {
+    cursor: pointer !important;
+  }
+
+  button *, a *, [role="button"] *, .cursor-pointer * {
+    cursor: pointer !important;
   }
 }
 
