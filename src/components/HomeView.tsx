@@ -68,7 +68,7 @@ export function HomeView({ activeServiceId, setActiveServiceId }: HomeViewProps)
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-lumio-accent block mb-6 px-1">
                 Growth Marketing Agency
               </span>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white leading-[0.95] tracking-tight mb-8 drop-shadow-2xl">
+              <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif text-white leading-[0.95] tracking-tight mb-8 drop-shadow-2xl">
                 Reach the market <br />
                 <span className="italic font-light text-lumio-accent">others miss.</span>
               </h1>
@@ -182,8 +182,17 @@ export function HomeView({ activeServiceId, setActiveServiceId }: HomeViewProps)
         <div className="relative group/slider px-4 lg:px-0">
           <div className="overflow-hidden">
             <motion.div 
-              animate={{ x: `calc(-${currentProjectIndex * 100}% - ${currentProjectIndex * 2}rem)` }}
-              className="flex gap-8 md:hidden"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(event, info) => {
+                if (info.offset.x < -50) {
+                  nextProject();
+                } else if (info.offset.x > 50) {
+                  prevProject();
+                }
+              }}
+              animate={{ x: `-${currentProjectIndex * 100}%` }}
+              className="flex gap-0 md:hidden cursor-grab active:cursor-grabbing"
               transition={shouldAnimate ? { type: "spring", stiffness: 300, damping: 30 } : { duration: 0 }}
               onAnimationComplete={handleAnimationComplete}
             >
@@ -222,7 +231,7 @@ export function HomeView({ activeServiceId, setActiveServiceId }: HomeViewProps)
           </div>
 
           {/* Navigation Arrows */}
-          <div className="absolute top-1/2 -translate-y-1/2 -left-4 lg:-left-12 z-10 opacity-0 group-hover/slider:opacity-100 transition-opacity">
+          <div className="absolute top-1/2 -translate-y-1/2 -left-4 lg:-left-12 z-10 opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-opacity">
             <button 
               onClick={prevProject}
               className="w-12 h-12 rounded-full bg-white shadow-xl border border-lumio-ink/5 flex items-center justify-center text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer"
@@ -230,13 +239,33 @@ export function HomeView({ activeServiceId, setActiveServiceId }: HomeViewProps)
               <ChevronRight size={24} className="rotate-180" />
             </button>
           </div>
-          <div className="absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-12 z-10 opacity-0 group-hover/slider:opacity-100 transition-opacity">
+          <div className="absolute top-1/2 -translate-y-1/2 -right-4 lg:-right-12 z-10 opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-opacity">
             <button 
               onClick={nextProject}
               className="w-12 h-12 rounded-full bg-white shadow-xl border border-lumio-ink/5 flex items-center justify-center text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer"
             >
               <ChevronRight size={24} />
             </button>
+          </div>
+
+          {/* Dot Indicators for Mobile */}
+          <div className="flex md:hidden justify-center gap-2 mt-6">
+            {PROJECTS.map((_, idx) => {
+              const isActive = (currentProjectIndex % PROJECTS.length) === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setShouldAnimate(true);
+                    setCurrentProjectIndex(PROJECTS.length + idx);
+                  }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    isActive ? 'bg-lumio-accent w-6' : 'bg-lumio-ink/20 hover:bg-lumio-ink/40'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
