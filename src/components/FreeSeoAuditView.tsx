@@ -157,7 +157,7 @@ export function FreeSeoAuditView() {
                   {item.desc}
                 </p>
                 <div className="mt-auto">
-                  <span className="px-1.5 py-0.5 bg-lumio-teal-light text-lumio-teal text-[7px] font-bold uppercase rounded tracking-widest">
+                  <span className="px-1.5 py-0.5 bg-lumio-accent-light text-lumio-accent text-[7px] font-bold uppercase rounded tracking-widest">
                     {item.tag}
                   </span>
                 </div>
