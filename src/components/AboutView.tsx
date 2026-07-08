@@ -1,14 +1,19 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Target, Users, TrendingUp, Sparkles, ArrowRight, ShieldCheck, Search, Share2, Globe, HeartHandshake } from 'lucide-react';
-import { ViewState } from '../types';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 interface AboutViewProps {
-  setView: (v: ViewState) => void;
   onContactClick?: () => void;
 }
 
-export function AboutView({ setView, onContactClick }: AboutViewProps) {
+export function AboutView({ onContactClick }: AboutViewProps) {
+  useDocumentMeta({
+    title: 'About Lumio | Senior Marketing Strategists & Growth Partners',
+    description: 'We are a senior team of performance marketers, content creators, and cultural specialists. We build tailored, scalable campaigns focused entirely on driving real revenue growth.',
+    canonicalPath: '/about',
+  });
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -18,7 +23,7 @@ export function AboutView({ setView, onContactClick }: AboutViewProps) {
       className="bg-lumio-surface min-h-screen pt-24"
     >
       {/* Hero Section */}
-      <section className="py-12 md:py-16 px-6 md:px-12 bg-lumio-ink text-white relative overflow-hidden">
+      <section className="py-12 md:py-16 px-6 md:px-12 bg-lumio-surface text-lumio-ink border-b border-lumio-ink/5 relative overflow-hidden">
         {/* Ambient background decoration */}
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-lumio-accent/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute -bottom-10 left-10 w-80 h-80 bg-lumio-teal/10 rounded-full blur-[100px] pointer-events-none" />
@@ -36,7 +41,7 @@ export function AboutView({ setView, onContactClick }: AboutViewProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-3xl md:text-5xl font-serif mb-4 leading-tight"
+            className="text-3xl md:text-5xl font-serif mb-4 leading-tight text-lumio-ink"
           >
             About Lumio
           </motion.h1>
@@ -44,7 +49,7 @@ export function AboutView({ setView, onContactClick }: AboutViewProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-lg md:text-xl font-light text-white/80 max-w-2xl mx-auto leading-relaxed mb-6"
+            className="text-lg md:text-xl font-light text-lumio-ink-soft max-w-2xl mx-auto leading-relaxed mb-6"
           >
             Ambitious marketers. Real brand partners.
           </motion.p>
@@ -58,7 +63,7 @@ export function AboutView({ setView, onContactClick }: AboutViewProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-sm md:text-base text-white/60 max-w-3xl mx-auto leading-relaxed"
+            className="text-sm md:text-base text-lumio-ink-muted max-w-3xl mx-auto leading-relaxed"
           >
             We is a group of marketers who got tired of agencies that prioritized billable hours over business outcomes. We built something different: a team that takes a genuine stake in the brands we work with and holds itself accountable to revenue, not reports.
           </motion.p>
@@ -152,7 +157,7 @@ export function AboutView({ setView, onContactClick }: AboutViewProps) {
       </section>
 
       {/* The advantage most agencies cannot offer. */}
-      <section className="py-12 md:py-16 px-6 md:px-12 bg-lumio-ink text-white relative overflow-hidden">
+      <section className="py-12 md:py-16 px-6 md:px-12 bg-lumio-accent-light/55 border-y border-lumio-accent/10 text-lumio-ink relative overflow-hidden">
         {/* Background elements */}
         <div className="absolute top-1/2 left-0 w-80 h-80 bg-lumio-teal/10 rounded-full blur-[100px] pointer-events-none" />
         
@@ -160,14 +165,14 @@ export function AboutView({ setView, onContactClick }: AboutViewProps) {
           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-lumio-teal block mb-3">
             Bilingual & Bi-cultural
           </span>
-          <h2 className="text-2xl md:text-4xl font-serif mb-6 leading-tight">
+          <h2 className="text-2xl md:text-4xl font-serif mb-6 leading-tight text-lumio-ink">
             The advantage most agencies cannot offer.
           </h2>
-          <div className="space-y-4 text-white/70 text-sm md:text-base leading-relaxed">
+          <div className="space-y-4 text-lumio-ink-soft text-sm md:text-base leading-relaxed">
             <p>
               There are agencies that are great at mainstream Western marketing. There are a handful of boutique firms that focus on Chinese community marketing. There is almost no one who does both at a genuinely high level.
             </p>
-            <p className="text-white font-medium text-base md:text-lg border-l-2 border-lumio-teal pl-4 my-6 italic">
+            <p className="text-lumio-ink font-semibold text-base md:text-lg border-l-2 border-lumio-teal pl-4 my-6 italic">
               That is where Lumio is different.
             </p>
             <p>

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Check } from 'lucide-react';
-import { ViewState } from '../types';
 import { SectionTitle } from './SectionTitle';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
-interface FreeSeoAuditViewProps {
-  setView: (v: ViewState) => void;
-}
-
-export function FreeSeoAuditView({ setView }: FreeSeoAuditViewProps) {
+export function FreeSeoAuditView() {
   const [submitted, setSubmitted] = useState(false);
+
+  useDocumentMeta({
+    title: 'Free Professional SEO Audit in 48 Hours',
+    description: 'Get a comprehensive, completely free search engine optimization (SEO) audit of your website in 48 hours. No credit card required. Learn what is blocking your Google rank.',
+    canonicalPath: '/free-seo-audit',
+  });
 
   return (
     <motion.div 
@@ -131,13 +133,13 @@ export function FreeSeoAuditView({ setView }: FreeSeoAuditViewProps) {
 
       {/* Audit Features */}
       <section className="py-16 bg-lumio-surface">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-6">
           <SectionTitle 
             eyebrow="What's Inside" 
             title="A real audit. Not an automated report." 
             description="Every audit is manually reviewed by a senior specialist to provide context that crawler tools miss."
           />
-          <div className="grid md:grid-cols-3 gap-6 px-6 md:px-0">
+          <div className="grid md:grid-cols-3 gap-4">
             {[
               { num: '01', title: 'Technical SEO Health', desc: 'Site speed, Core Web Vitals, crawlability, and indexation analysis.', tag: 'Technical' },
               { num: '02', title: 'On-Page Analysis', desc: 'Title tags, metadata, header structure, and keyword optimization.', tag: 'On-Page' },
@@ -146,16 +148,16 @@ export function FreeSeoAuditView({ setView }: FreeSeoAuditViewProps) {
               { num: '05', title: 'Competitive Benchmarking', desc: 'See exactly how you stack up against your top 3 rivals.', tag: 'Competitive' },
               { num: '06', title: 'Priority Action Plan', desc: 'The 10 highest-impact fixes ranked by effort vs. measurable ROI.', tag: 'Actionable' }
             ].map(item => (
-              <div key={item.num} className="bg-white p-6 rounded-3xl border border-lumio-ink/5 hover:border-lumio-accent/10 transition-all flex flex-col group">
-                <div className="text-3xl font-serif text-lumio-accent/5 mb-4 group-hover:text-lumio-accent/10 transition-colors">
+              <div key={item.num} className="bg-white p-5 rounded-[1.5rem] border border-lumio-ink/5 hover:border-lumio-accent/20 transition-all flex flex-col group text-left">
+                <div className="text-2xl font-serif text-lumio-accent/5 mb-3 group-hover:text-lumio-accent/10 transition-colors">
                   {item.num}
                 </div>
-                <h4 className="text-base font-bold text-lumio-ink mb-2">{item.title}</h4>
-                <p className="text-[13px] text-lumio-ink-muted leading-relaxed mb-4">
+                <h4 className="text-base font-serif mb-1.5 text-lumio-ink">{item.title}</h4>
+                <p className="text-[11px] text-lumio-ink-muted leading-relaxed mb-4">
                   {item.desc}
                 </p>
                 <div className="mt-auto">
-                  <span className="px-2 py-1 bg-lumio-teal-light text-lumio-teal text-[8px] font-bold uppercase rounded tracking-widest">
+                  <span className="px-1.5 py-0.5 bg-lumio-teal-light text-lumio-teal text-[7px] font-bold uppercase rounded tracking-widest">
                     {item.tag}
                   </span>
                 </div>
@@ -166,41 +168,41 @@ export function FreeSeoAuditView({ setView }: FreeSeoAuditViewProps) {
       </section>
 
       {/* Sample Findings */}
-      <section className="section-padding bg-white pb-32">
-        <div className="max-w-7xl mx-auto px-6 md:px-0">
+      <section className="py-16 bg-white pb-24">
+        <div className="max-w-7xl mx-auto px-6">
           <SectionTitle 
             eyebrow="Audit Sample" 
             title="Real findings, real actions." 
             description="Here is a look at the level of detail we provide in every single free report."
           />
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-lumio-ink p-10 rounded-[2.5rem] text-white">
-              <div className="flex items-center justify-between mb-10">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-lumio-accent">Technical Finding</div>
-                <span className="px-3 py-1 bg-rose-500/20 text-rose-400 text-[9px] font-bold uppercase rounded">Critical</span>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white border border-lumio-ink/5 hover:border-lumio-accent/20 transition-all p-5 rounded-[1.5rem] text-lumio-ink flex flex-col text-left shadow-sm">
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-[8px] font-bold uppercase tracking-widest text-lumio-accent">Technical Finding</div>
+                <span className="px-2 py-0.5 bg-rose-500/10 text-rose-600 text-[8px] font-bold uppercase rounded">Critical</span>
               </div>
-              <p className="text-lg font-serif mb-6 leading-snug">
+              <p className="text-sm font-serif mb-4 leading-relaxed text-lumio-ink">
                 "Mobile page speed is currently 4.8s. Google’s threshold is under 2.5s. You’re likely losing 30% of traffic before the page even loads."
               </p>
-              <div className="pt-8 border-t border-white/10">
-                <div className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-3 font-mono">Action to Fix</div>
-                <p className="text-xs text-white/60 leading-relaxed italic">
+              <div className="pt-4 mt-auto border-t border-lumio-ink/5">
+                <div className="text-[8px] font-bold uppercase tracking-widest text-lumio-ink/30 mb-1.5 font-mono">Action to Fix</div>
+                <p className="text-[11px] text-lumio-ink-muted leading-relaxed italic">
                   Compress high-resolution hero images and enable lazy loading for secondary visual components.
                 </p>
               </div>
             </div>
             
-            <div className="bg-lumio-surface p-10 rounded-[2.5rem] border border-lumio-ink/5">
-              <div className="flex items-center justify-between mb-10">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-lumio-accent">On-Page Finding</div>
-                <span className="px-3 py-1 bg-amber-500/10 text-amber-600 text-[9px] font-bold uppercase rounded">High Impact</span>
+            <div className="bg-lumio-surface p-5 rounded-[1.5rem] border border-lumio-ink/5 hover:border-lumio-accent/20 transition-all flex flex-col text-left">
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-[8px] font-bold uppercase tracking-widest text-lumio-accent">On-Page Finding</div>
+                <span className="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[8px] font-bold uppercase rounded">High Impact</span>
               </div>
-              <p className="text-lg font-serif mb-6 leading-snug text-lumio-ink">
+              <p className="text-sm font-serif mb-4 leading-relaxed text-lumio-ink">
                 "Targeting [Product Name] in Toronto, but your homepage H1 tag is generic. You are sitting on page 3 when you could be in the top 5."
               </p>
-              <div className="pt-8 border-t border-lumio-ink/5">
-                <div className="text-[9px] font-bold uppercase tracking-widest text-lumio-ink/30 mb-3 font-mono">Action to Fix</div>
-                <p className="text-xs text-lumio-ink-muted leading-relaxed italic">
+              <div className="pt-4 mt-auto border-t border-lumio-ink/5">
+                <div className="text-[8px] font-bold uppercase tracking-widest text-lumio-ink/30 mb-1.5 font-mono">Action to Fix</div>
+                <p className="text-[11px] text-lumio-ink-muted leading-relaxed italic">
                   Restructure header tags to include high-intent geographic keywords without over-optimizing.
                 </p>
               </div>

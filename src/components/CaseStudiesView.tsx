@@ -1,15 +1,16 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Project, ViewState } from '../types';
 import { PROJECTS } from '../data/projects';
 import { CaseStudyCard } from './CaseStudyCard';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
-interface CaseStudiesViewProps {
-  setView: (v: ViewState) => void;
-  setSelectedProject: (p: Project) => void;
-}
+export function CaseStudiesView() {
+  useDocumentMeta({
+    title: 'Client Case Studies & Marketing Growth Results',
+    description: 'See real stories and measurable performance results across Amazon Ads, Meta Ads, Local SEO, and localized influencer marketing campaigns.',
+    canonicalPath: '/case-studies',
+  });
 
-export function CaseStudiesView({ setView, setSelectedProject }: CaseStudiesViewProps) {
   return (
     <motion.div 
       initial={{ opacity: 0 }} 
@@ -30,7 +31,7 @@ export function CaseStudiesView({ setView, setSelectedProject }: CaseStudiesView
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PROJECTS.map(project => (
-            <CaseStudyCard key={project.id} project={project} setView={setView} setSelectedProject={setSelectedProject} />
+            <CaseStudyCard key={project.id} project={project} />
           ))}
         </div>
       </section>

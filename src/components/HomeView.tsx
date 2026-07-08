@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronRight, Award, Sparkles, TrendingUp, Check, Star } from 'lucide-react';
-import { ViewState, Project } from '../types';
+import { Project } from '../types';
 import { PROJECTS } from '../data/projects';
 import { CLIENT_LOGOS } from '../data/services';
 import { HeroSlideshow } from './HeroSlideshow';
@@ -9,17 +10,23 @@ import { CaseStudyCard } from './CaseStudyCard';
 import { SectionTitle } from './SectionTitle';
 import { ServicesTabs } from './ServicesTabs';
 import { ContactForm } from './ContactForm';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 interface HomeViewProps {
-  setView: (v: ViewState) => void;
-  setSelectedProject: (p: Project) => void;
   activeServiceId: string;
   setActiveServiceId: (id: string) => void;
 }
 
-export function HomeView({ setView, setSelectedProject, activeServiceId, setActiveServiceId }: HomeViewProps) {
+export function HomeView({ activeServiceId, setActiveServiceId }: HomeViewProps) {
+  const navigate = useNavigate();
   const [currentProjectIndex, setCurrentProjectIndex] = useState(PROJECTS.length);
   const [shouldAnimate, setShouldAnimate] = useState(true);
+
+  useDocumentMeta({
+    title: 'Lumio — Performance & Growth Marketing Agency',
+    description: 'Lumio is a premium growth marketing agency scaling ambitious CPG, beauty, and tech brands via high-ROI paid media, local SEO, and Chinese consumer market expansion.',
+    canonicalPath: '/',
+  });
 
   const nextProject = () => {
     setShouldAnimate(true);
@@ -75,7 +82,7 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
                     Get in touch
                   </a>
                   <button 
-                    onClick={() => { setView('case-studies'); window.scrollTo(0,0); }}
+                    onClick={() => { navigate('/case-studies'); window.scrollTo(0,0); }}
                     className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/10 text-white text-[11px] font-bold uppercase tracking-widest rounded-full hover:bg-white/20 transition-all duration-300 cursor-pointer"
                   >
                     See our work
@@ -150,7 +157,6 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
           description="From performance ads to cultural market expansion—every service is designed to drive measurable revenue."
         />
         <ServicesTabs 
-          setView={setView} 
           activeId={activeServiceId} 
           setActiveId={setActiveServiceId} 
         />
@@ -166,7 +172,7 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
             </h2>
           </div>
           <button 
-            onClick={() => { setView('case-studies'); window.scrollTo(0, 0); }}
+            onClick={() => { navigate('/case-studies'); window.scrollTo(0, 0); }}
             className="text-sm font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all pb-2 border-b-2 border-lumio-accent/20 cursor-pointer"
           >
             Read More <ArrowRight size={16} />
@@ -183,11 +189,7 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
             >
               {[...PROJECTS, ...PROJECTS, ...PROJECTS].map((project, idx) => (
                 <div key={`${project.id}-${idx}`} className="w-full shrink-0">
-                  <CaseStudyCard 
-                    project={project} 
-                    setView={setView} 
-                    setSelectedProject={setSelectedProject} 
-                  />
+                  <CaseStudyCard project={project} />
                 </div>
               ))}
             </motion.div>
@@ -200,11 +202,7 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
             >
               {[...PROJECTS, ...PROJECTS, ...PROJECTS].map((project, idx) => (
                 <div key={`${project.id}-tablet-${idx}`} className="w-[calc(50%-1rem)] shrink-0">
-                  <CaseStudyCard 
-                    project={project} 
-                    setView={setView} 
-                    setSelectedProject={setSelectedProject} 
-                  />
+                  <CaseStudyCard project={project} />
                 </div>
               ))}
             </motion.div>
@@ -217,11 +215,7 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
             >
               {[...PROJECTS, ...PROJECTS, ...PROJECTS].map((project, idx) => (
                 <div key={`${project.id}-desktop-${idx}`} className="w-[calc(33.333%-1.334rem)] shrink-0">
-                  <CaseStudyCard 
-                    project={project} 
-                    setView={setView} 
-                    setSelectedProject={setSelectedProject} 
-                  />
+                  <CaseStudyCard project={project} />
                 </div>
               ))}
             </motion.div>
@@ -305,7 +299,7 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
               className="bg-white p-8 rounded-3xl shadow-xl border border-lumio-ink/5 relative z-10"
             >
               <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => <Star key={i} size={i < 5 ? 14 : 0} className="fill-lumio-accent text-lumio-accent" />)}
+                {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-lumio-accent text-lumio-accent" />)}
               </div>
               <p className="text-sm font-serif italic text-lumio-ink leading-relaxed mb-4">
                 "It was great working with Lumio. They are very knowledgeable and well-versed in Amazon Ads, and they helped us achieve a really strong target TACOS"
@@ -324,19 +318,19 @@ export function HomeView({ setView, setSelectedProject, activeServiceId, setActi
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="bg-lumio-ink p-8 rounded-3xl shadow-2xl relative ml-0 md:ml-12 lg:ml-20 -mt-4 md:-mt-8 z-20"
+              className="bg-white border-2 border-lumio-accent/15 p-8 rounded-3xl shadow-xl relative ml-0 md:ml-12 lg:ml-20 -mt-4 md:-mt-8 z-20"
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-lumio-accent text-lumio-accent" />)}
               </div>
-              <p className="text-sm font-serif italic text-white leading-relaxed mb-4">
+              <p className="text-sm font-serif italic text-lumio-ink leading-relaxed mb-4">
                 "Lumio set up our WeChat presence, ran a CNY campaign, and connected us with local KOLs. Within 90 days we had closed three properties directly attributed to their work. The ROI was unlike anything we'd seen from traditional advertising"
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-lumio-accent font-bold text-xs border border-white/5">D</div>
+                <div className="w-8 h-8 rounded-full bg-lumio-accent-light flex items-center justify-center text-lumio-accent font-bold text-xs border border-lumio-accent/10">D</div>
                 <div>
-                  <div className="text-[10px] font-bold text-white uppercase tracking-wider">Director of Marketing</div>
-                  <div className="text-[9px] text-white/50 uppercase tracking-widest">Luxury Real Estate Group</div>
+                  <div className="text-[10px] font-bold text-lumio-ink uppercase tracking-wider">Director of Marketing</div>
+                  <div className="text-[9px] text-lumio-ink-muted uppercase tracking-widest">Luxury Real Estate Group</div>
                 </div>
               </div>
             </motion.div>

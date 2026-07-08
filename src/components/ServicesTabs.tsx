@@ -1,16 +1,17 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import { ViewState } from '../types';
+import { useNavigate } from 'react-router-dom';
 import { GENERAL_SERVICES } from '../data/services';
 
 interface ServicesTabsProps {
-  setView: (v: ViewState) => void;
   activeId: string;
   setActiveId: (id: string) => void;
 }
 
-export function ServicesTabs({ setView, activeId, setActiveId }: ServicesTabsProps) {
+export function ServicesTabs({ activeId, setActiveId }: ServicesTabsProps) {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col lg:flex-row border border-lumio-ink/10 rounded-2xl overflow-hidden bg-white shadow-sm min-h-[550px]">
       {/* Left Sidebar Navigation */}
@@ -93,16 +94,16 @@ export function ServicesTabs({ setView, activeId, setActiveId }: ServicesTabsPro
                 <div className="mt-auto pt-8 border-t border-lumio-ink/5">
                   {svc.id === 'chinese' && (
                     <button 
-                      onClick={() => { setView('chinese-marketing'); window.scrollTo(0,0); }}
-                      className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer"
+                      onClick={() => { navigate('/chinese-marketing'); window.scrollTo(0,0); }}
+                      className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer text-left"
                     >
                       Get Your Free Chinese Market Audit <ArrowRight size={14} />
                     </button>
                   )}
                   {svc.id === 'seo' && (
                     <button 
-                      onClick={() => { setView('free-seo-audit'); window.scrollTo(0,0); }}
-                      className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all underline underline-offset-4 decoration-lumio-accent/20 cursor-pointer"
+                      onClick={() => { navigate('/free-seo-audit'); window.scrollTo(0,0); }}
+                      className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all underline underline-offset-4 decoration-lumio-accent/20 cursor-pointer text-left"
                     >
                       Get your Free SEO Audit <ArrowRight size={14} />
                     </button>

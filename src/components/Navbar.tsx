@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Menu, X } from 'lucide-react';
-import { ViewState } from '../types';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GENERAL_SERVICES } from '../data/services';
 
 interface NavbarProps {
-  currentView: ViewState;
-  setView: (v: ViewState) => void;
   setActiveServiceId: (id: string) => void;
+  setScrollContactPending: (pending: boolean) => void;
 }
 
-export function Navbar({ currentView, setView, setActiveServiceId }: NavbarProps) {
+export function Navbar({ setActiveServiceId, setScrollContactPending }: NavbarProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -21,29 +22,31 @@ export function Navbar({ currentView, setView, setActiveServiceId }: NavbarProps
   }, []);
 
   // On sub-pages, we always want the dark/solid nav style because they have white backgrounds
-  const useDarkNav = isScrolled || currentView !== 'home';
+  const useDarkNav = isScrolled || location.pathname !== '/';
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${useDarkNav ? 'glass-nav py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        <button 
-          onClick={() => { setView('home'); window.scrollTo(0, 0); }} 
+        <Link 
+          to="/"
+          onClick={() => { window.scrollTo(0, 0); }} 
           className={`text-2xl font-serif transition-colors duration-300 cursor-pointer ${useDarkNav ? 'text-lumio-ink' : 'text-white'}`}
         >
           Lumi<span className="text-lumio-accent">o</span>
-        </button>
+        </Link>
         
         <div className="hidden md:flex items-center gap-8">
-          <button 
-            onClick={() => { setView('home'); window.scrollTo(0,0); }}
+          <Link 
+            to="/"
+            onClick={() => { window.scrollTo(0,0); }}
             className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
-              currentView === 'home' 
+              location.pathname === '/' 
                 ? 'text-lumio-accent' 
                 : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
             }`}
           >
             Home
-          </button>
+          </Link>
           <div className="relative group">
             <button className={`flex items-center gap-1 text-sm font-medium transition-all duration-300 cursor-pointer ${useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'}`}>
               Services <ChevronDown size={14} className="opacity-50" />
@@ -54,12 +57,17 @@ export function Navbar({ currentView, setView, setActiveServiceId }: NavbarProps
                   <button 
                     key={svc.id}
                     onClick={() => {
-                      setView('home');
                       setActiveServiceId(svc.id);
-                      setTimeout(() => {
+                      if (location.pathname === '/') {
                         const el = document.getElementById('services');
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
-                      }, 100);
+                      } else {
+                        navigate('/');
+                        setTimeout(() => {
+                          const el = document.getElementById('services');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }, 400);
+                      }
                     }}
                     className="w-full text-left px-3 py-2 text-xs font-medium text-lumio-ink-soft hover:bg-lumio-accent-light hover:text-lumio-accent rounded-lg transition-colors cursor-pointer"
                   >
@@ -69,57 +77,58 @@ export function Navbar({ currentView, setView, setActiveServiceId }: NavbarProps
               </div>
             </div>
           </div>
-          <button 
-            onClick={() => { setView('free-seo-audit'); window.scrollTo(0,0); }}
+          <Link 
+            to="/free-seo-audit"
+            onClick={() => { window.scrollTo(0,0); }}
             className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
-              currentView === 'free-seo-audit' 
+              location.pathname === '/free-seo-audit' 
                 ? 'text-lumio-accent' 
                 : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
             }`}
           >
             Free SEO Audit
-          </button>
-          <button 
-            onClick={() => { setView('chinese-marketing'); window.scrollTo(0, 0); }}
+          </Link>
+          <Link 
+            to="/chinese-marketing"
+            onClick={() => { window.scrollTo(0, 0); }}
             className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
-              currentView === 'chinese-marketing' 
+              location.pathname === '/chinese-marketing' 
                 ? 'text-lumio-accent' 
                 : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
             }`}
           >
             Chinese Market Marketing
-          </button>
-          <button 
-            onClick={() => { setView('case-studies'); window.scrollTo(0,0); }}
+          </Link>
+          <Link 
+            to="/case-studies"
+            onClick={() => { window.scrollTo(0,0); }}
             className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
-              currentView === 'case-studies' 
+              location.pathname.startsWith('/case-studies') 
                 ? 'text-lumio-accent' 
                 : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
             }`}
           >
             Case Studies
-          </button>
-          <button 
-            onClick={() => { setView('insights'); window.scrollTo(0, 0); }}
+          </Link>
+          <Link 
+            to="/insights"
+            onClick={() => { window.scrollTo(0, 0); }}
             className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
-              currentView === 'insights' || currentView === 'insight-detail' 
+              location.pathname.startsWith('/insights')
                 ? 'text-lumio-accent' 
                 : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
             }`}
           >
             Insights
-          </button>
+          </Link>
           <button 
             onClick={() => {
-              if (currentView === 'home') {
+              if (location.pathname === '/') {
                 const el = document.getElementById('contact');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               } else {
-                setView('home');
-                setTimeout(() => {
-                  const el = document.getElementById('contact');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }, 500);
+                setScrollContactPending(true);
+                navigate('/');
               }
             }}
             className={`btn ${useDarkNav ? 'btn-primary' : 'bg-white text-lumio-ink hover:bg-lumio-accent hover:text-white'} text-sm py-2.5 transition-all duration-300 cursor-pointer`}
@@ -143,23 +152,20 @@ export function Navbar({ currentView, setView, setActiveServiceId }: NavbarProps
             className="md:hidden bg-white border-b border-lumio-ink/5 overflow-hidden"
           >
             <div className="p-6 flex flex-col gap-4">
-              <button onClick={() => { setView('home'); setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Home</button>
-              <button onClick={() => { setView('free-seo-audit'); setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Free SEO Audit</button>
-              <button onClick={() => { setView('chinese-marketing'); setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Chinese Market Marketing</button>
-              <button onClick={() => { setView('case-studies'); setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Case Studies</button>
-              <button onClick={() => { setView('insights'); setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Insights</button>
+              <Link to="/" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Home</Link>
+              <Link to="/free-seo-audit" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Free SEO Audit</Link>
+              <Link to="/chinese-marketing" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Chinese Market Marketing</Link>
+              <Link to="/case-studies" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Case Studies</Link>
+              <Link to="/insights" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Insights</Link>
               <button 
                 onClick={() => {
                   setIsOpen(false);
-                  if (currentView === 'home') {
+                  if (location.pathname === '/') {
                     const el = document.getElementById('contact');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   } else {
-                    setView('home');
-                    setTimeout(() => {
-                      const el = document.getElementById('contact');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
+                    setScrollContactPending(true);
+                    navigate('/');
                   }
                 }} 
                 className="btn btn-primary w-full cursor-pointer"

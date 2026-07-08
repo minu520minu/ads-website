@@ -1,14 +1,18 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Article, ViewState } from '../types';
+import { useNavigate } from 'react-router-dom';
 import { INSIGHTS_ARTICLES } from '../data/articles';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
-interface InsightsViewProps {
-  setView: (v: ViewState) => void;
-  setSelectedArticle: (a: Article) => void;
-}
+export function InsightsView() {
+  const navigate = useNavigate();
 
-export function InsightsView({ setView, setSelectedArticle }: InsightsViewProps) {
+  useDocumentMeta({
+    title: 'Marketing Insights & Performance Strategy Blog',
+    description: 'Deep-dive analytical articles on paid ads optimization, Local SEO guidelines, WeChat & Rednote marketing, and global consumer psychology.',
+    canonicalPath: '/insights',
+  });
+
   return (
     <motion.div 
       initial={{ opacity: 0 }} 
@@ -36,8 +40,7 @@ export function InsightsView({ setView, setSelectedArticle }: InsightsViewProps)
                 key={i} 
                 className="group cursor-pointer"
                 onClick={() => {
-                  setSelectedArticle(article);
-                  setView('insight-detail');
+                  navigate(`/insights/${article.id}`);
                   window.scrollTo(0, 0);
                 }}
               >

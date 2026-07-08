@@ -16,7 +16,6 @@ import {
   PenTool, 
   TrendingUp 
 } from 'lucide-react';
-import { ViewState } from '../types';
 import { PACKAGES } from '../data/services';
 import { 
   CHINESE_MARKET_STEPS, 
@@ -27,10 +26,7 @@ import {
 } from '../data/chineseMarketing';
 import { SectionTitle } from './SectionTitle';
 import { ContactForm } from './ContactForm';
-
-interface ChineseMarketingViewProps {
-  setView: (v: ViewState) => void;
-}
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 const LucideIcon = ({ name, className }: { name: string, className?: string }) => {
   const icons: Record<string, any> = {
@@ -51,9 +47,15 @@ const LucideIcon = ({ name, className }: { name: string, className?: string }) =
   return <Icon className={className || "w-6 h-6"} />;
 };
 
-export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
+export function ChineseMarketingView() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [auditSubmitted, setAuditSubmitted] = useState(false);
+
+  useDocumentMeta({
+    title: 'Chinese Consumer Marketing & Xiaohongshu (Rednote) Agency',
+    description: 'Unlock high-spending Chinese diaspora and global markets. Expert management of Rednote (Xiaohongshu), WeChat, WeChat Pay, and Chinese micro-influencer (KOL) campaigns.',
+    canonicalPath: '/chinese-marketing',
+  });
 
   const stats = [
     { value: '50M+', label: 'Chinese living abroad' },
@@ -244,20 +246,20 @@ export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
           />
           <div className="grid md:grid-cols-3 gap-0 border border-lumio-ink/10 rounded-[2rem] overflow-hidden bg-white shadow-xl text-left items-stretch">
             {PACKAGES.map((pkg, idx) => (
-              <div key={idx} className={`p-8 flex flex-col h-full ${pkg.featured ? 'bg-lumio-ink text-white' : 'border-r border-lumio-ink/5 last:border-0'}`}>
+              <div key={idx} className={`p-8 flex flex-col h-full ${pkg.featured ? 'bg-lumio-accent-light border-2 border-lumio-accent/40 text-lumio-ink rounded-[2rem] shadow-xl' : 'border-r border-lumio-ink/5 last:border-0'}`}>
                 <div className={`inline-block px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest mb-6 w-fit ${pkg.featured ? 'bg-lumio-accent text-white' : 'bg-lumio-accent-light text-lumio-accent'}`}>
                   {pkg.badge}
                 </div>
-                <h4 className={`text-2xl font-serif mb-3 ${pkg.featured ? 'text-white' : 'text-lumio-ink'}`}>{pkg.name}</h4>
+                <h4 className="text-2xl font-serif mb-3 text-lumio-ink">{pkg.name}</h4>
                 <div className="min-h-[2.5rem] mb-6">
-                  <p className={`text-[12px] leading-relaxed ${pkg.featured ? 'text-white/40' : 'text-lumio-ink-muted'}`}>
+                  <p className="text-[12px] leading-relaxed text-lumio-ink-muted">
                     {pkg.tagline}
                   </p>
                 </div>
                 
-                <div className={`h-px w-full mb-6 ${pkg.featured ? 'bg-white/10' : 'bg-lumio-ink/5'}`} />
+                <div className={`h-px w-full mb-6 ${pkg.featured ? 'bg-lumio-accent/20' : 'bg-lumio-ink/5'}`} />
 
-                <div className={`text-[9px] font-bold uppercase tracking-widest mb-4 ${pkg.featured ? 'text-white/30' : 'text-lumio-ink/30'}`}>What's Included</div>
+                <div className={`text-[9px] font-bold uppercase tracking-widest mb-4 ${pkg.featured ? 'text-lumio-ink-soft/40' : 'text-lumio-ink/30'}`}>What's Included</div>
                 
                 <ul className="space-y-4 mb-8 flex-grow">
                   {pkg.features.map((feature, fIdx) => {
@@ -266,10 +268,10 @@ export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
                       <li key={fIdx} className="flex items-start gap-3">
                         {!isIntroBullet && (
                           <div className={`w-3.5 h-3.5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${pkg.featured ? 'bg-lumio-accent/20' : 'bg-lumio-accent-light'}`}>
-                            <div className={`w-1 h-1 rounded-full ${pkg.featured ? 'bg-lumio-accent' : 'bg-lumio-accent'}`} />
+                            <div className="w-1 h-1 rounded-full bg-lumio-accent" />
                           </div>
                         )}
-                        <span className={`text-[12px] leading-relaxed ${isIntroBullet ? 'font-bold' : ''} ${pkg.featured ? 'text-white/80' : 'text-lumio-ink-soft'}`}>{feature}</span>
+                        <span className={`text-[12px] leading-relaxed ${isIntroBullet ? 'font-bold' : ''} text-lumio-ink-soft`}>{feature}</span>
                       </li>
                     );
                   })}
@@ -285,7 +287,7 @@ export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
                   >
                     Get Started
                   </button>
-                  <p className={`text-[9px] italic text-center mt-4 ${pkg.featured ? 'text-white/30' : 'text-lumio-ink-muted'}`}>
+                  <p className="text-[9px] italic text-center mt-4 text-lumio-ink-muted">
                     {pkg.ideal}
                   </p>
                 </div>
@@ -321,65 +323,65 @@ export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
       </section>
 
       {/* FREE CHINESE MARKET AUDIT */}
-      <section id="free-chinese-audit" className="py-20 bg-lumio-ink text-white scroll-mt-24 relative overflow-hidden">
+      <section id="free-chinese-audit" className="py-20 bg-lumio-surface text-lumio-ink border-t border-b border-lumio-ink/5 scroll-mt-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 text-left">
-              <span className="bg-lumio-accent/20 text-lumio-accent text-[9px] font-bold px-3 py-1.5 rounded-full tracking-[0.2em] uppercase inline-block mb-6 font-sans">
+              <span className="bg-lumio-teal-light text-lumio-teal text-[9px] font-bold px-3 py-1.5 rounded-full tracking-[0.2em] uppercase inline-block mb-6 font-sans">
                 FREE CHINESE MARKET AUDIT
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif leading-[1.2] mb-6 text-white">
+              <h2 className="text-3xl md:text-4xl font-serif leading-[1.2] mb-6 text-lumio-ink">
                 Get your free Chinese <br />
                 <span className="italic text-lumio-accent font-normal">market visibility audit.</span>
               </h2>
-              <p className="text-sm text-white/70 leading-relaxed mb-8 max-w-lg">
+              <p className="text-sm text-lumio-ink-soft leading-relaxed mb-8 max-w-lg">
                 Full Chinese market visibility audit, competitive gap analysis, and a 90-day recommended action plan. 
               </p>
               
-              <div className="space-y-4 pt-4 border-t border-white/10 max-w-lg">
+              <div className="space-y-4 pt-4 border-t border-lumio-ink/10 max-w-lg">
                 <div className="flex items-start gap-3 text-left">
-                  <div className="w-5 h-5 rounded-full bg-lumio-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-lumio-accent/10 flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle className="w-3 h-3 text-lumio-accent" />
                   </div>
                   <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-white">Visibility Audit</h5>
-                    <p className="text-xs text-white/60">We assess your current search footprint and brand presence on WeChat, Rednote, Douyin, and other platforms</p>
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-lumio-ink">Visibility Audit</h5>
+                    <p className="text-xs text-lumio-ink-muted">We assess your current search footprint and brand presence on WeChat, Rednote, Douyin, and other platforms</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-left">
-                  <div className="w-5 h-5 rounded-full bg-lumio-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-lumio-accent/10 flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle className="w-3 h-3 text-lumio-accent" />
                   </div>
                   <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-white">Competitive Gap Analysis</h5>
-                    <p className="text-xs text-white/60">We analyze where your top competitors are capturing high-value Chinese consumer traffic.</p>
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-lumio-ink">Competitive Gap Analysis</h5>
+                    <p className="text-xs text-lumio-ink-muted">We analyze where your top competitors are capturing high-value Chinese consumer traffic.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 text-left">
-                  <div className="w-5 h-5 rounded-full bg-lumio-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-lumio-accent/10 flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle className="w-3 h-3 text-lumio-accent" />
                   </div>
                   <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-white">90-Day Action Plan</h5>
-                    <p className="text-xs text-white/60">Receive a clear, step-by-step launch strategy with estimated effort, platform selection, and budget.</p>
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-lumio-ink">90-Day Action Plan</h5>
+                    <p className="text-xs text-lumio-ink-muted">Receive a clear, step-by-step launch strategy with estimated effort, platform selection, and budget.</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-6">
-              <div className="bg-[#181c28] border border-white/5 p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+              <div className="bg-white border border-lumio-ink/10 p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
                 <AnimatePresence mode="wait">
                   {!auditSubmitted ? (
                     <motion.div
-                      key="form"
+                       key="form"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       className="text-left"
                     >
-                      <h3 className="text-xl font-serif text-white mb-2">Request Your Free Audit</h3>
-                      <p className="text-xs text-white/40 mb-6 italic">Delivered to your inbox within 48 business hours.</p>
+                      <h3 className="text-xl font-serif text-lumio-ink mb-2">Request Your Free Audit</h3>
+                      <p className="text-xs text-lumio-ink-muted mb-6 italic">Delivered to your inbox within 48 business hours.</p>
                       
                       <form 
                         onSubmit={(e) => { 
@@ -408,66 +410,66 @@ export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
                       >
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-1">
-                            <label className="text-[9px] font-bold uppercase tracking-wider text-white/40">First Name <span className="text-lumio-accent">*</span></label>
+                            <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">First Name <span className="text-lumio-accent">*</span></label>
                             <input 
                               type="text" 
                               name="firstName"
                               required 
                               placeholder="First Name" 
-                              className="w-full bg-lumio-ink border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder:text-white/20 focus:border-lumio-accent outline-none transition-colors" 
+                              className="w-full bg-lumio-surface border border-lumio-ink/10 rounded-xl px-4 py-3 text-xs text-lumio-ink placeholder:text-lumio-ink-muted/50 focus:border-lumio-accent focus:bg-white outline-none transition-all duration-200" 
                             />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-[9px] font-bold uppercase tracking-wider text-white/40">Last Name <span className="text-lumio-accent">*</span></label>
+                            <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">Last Name <span className="text-lumio-accent">*</span></label>
                             <input 
                               type="text" 
                               name="lastName"
                               required 
                               placeholder="Last Name" 
-                              className="w-full bg-lumio-ink border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder:text-white/20 focus:border-lumio-accent outline-none transition-colors" 
+                              className="w-full bg-lumio-surface border border-lumio-ink/10 rounded-xl px-4 py-3 text-xs text-lumio-ink placeholder:text-lumio-ink-muted/50 focus:border-lumio-accent focus:bg-white outline-none transition-all duration-200" 
                             />
                           </div>
                         </div>
 
                         <div className="space-y-1">
-                          <label className="text-[9px] font-bold uppercase tracking-wider text-white/40">Email Address <span className="text-lumio-accent">*</span></label>
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">Email Address <span className="text-lumio-accent">*</span></label>
                           <input 
                             type="email" 
                             name="email"
                             required 
                             placeholder="you@company.com" 
-                            className="w-full bg-lumio-ink border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder:text-white/20 focus:border-lumio-accent outline-none transition-colors" 
+                            className="w-full bg-lumio-surface border border-lumio-ink/10 rounded-xl px-4 py-3 text-xs text-lumio-ink placeholder:text-lumio-ink-muted/50 focus:border-lumio-accent focus:bg-white outline-none transition-all duration-200" 
                           />
                         </div>
 
                         <div className="space-y-1">
-                          <label className="text-[9px] font-bold uppercase tracking-wider text-white/40">Company Name <span className="text-lumio-accent">*</span></label>
+                          <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">Company Name <span className="text-lumio-accent">*</span></label>
                           <input 
                             type="text" 
                             name="company"
                             required 
                             placeholder="Your Company" 
-                            className="w-full bg-lumio-ink border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder:text-white/20 focus:border-lumio-accent outline-none transition-colors" 
+                            className="w-full bg-lumio-surface border border-lumio-ink/10 rounded-xl px-4 py-3 text-xs text-lumio-ink placeholder:text-lumio-ink-muted/50 focus:border-lumio-accent focus:bg-white outline-none transition-all duration-200" 
                           />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-1">
-                            <label className="text-[9px] font-bold uppercase tracking-wider text-white/40">Competitor 1 <span className="text-white/20">(Optional)</span></label>
+                            <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">Competitor 1 <span className="text-lumio-ink-muted/50">(Optional)</span></label>
                             <input 
                               type="text" 
                               name="competitor1"
                               placeholder="Competitor 1 Name" 
-                              className="w-full bg-lumio-ink border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder:text-white/20 focus:border-lumio-accent outline-none transition-colors" 
+                              className="w-full bg-lumio-surface border border-lumio-ink/10 rounded-xl px-4 py-3 text-xs text-lumio-ink placeholder:text-lumio-ink-muted/50 focus:border-lumio-accent focus:bg-white outline-none transition-all duration-200" 
                             />
                           </div>
                           <div className="space-y-1">
-                            <label className="text-[9px] font-bold uppercase tracking-wider text-white/40">Competitor 2 <span className="text-white/20">(Optional)</span></label>
+                            <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">Competitor 2 <span className="text-lumio-ink-muted/50">(Optional)</span></label>
                             <input 
                               type="text" 
                               name="competitor2"
                               placeholder="Competitor 2 Name" 
-                              className="w-full bg-lumio-ink border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder:text-white/20 focus:border-lumio-accent outline-none transition-colors" 
+                              className="w-full bg-lumio-surface border border-lumio-ink/10 rounded-xl px-4 py-3 text-xs text-lumio-ink placeholder:text-lumio-ink-muted/50 focus:border-lumio-accent focus:bg-white outline-none transition-all duration-200" 
                             />
                           </div>
                         </div>
@@ -478,7 +480,7 @@ export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
                         >
                           Request Free Audit →
                         </button>
-                        <p className="text-[9px] text-center text-white/30 italic">
+                        <p className="text-[9px] text-center text-lumio-ink-muted/65 italic">
                           🔒 Your information is secure and only used for your audit.
                         </p>
                       </form>
@@ -490,11 +492,11 @@ export function ChineseMarketingView({ setView }: ChineseMarketingViewProps) {
                       animate={{ opacity: 1, scale: 1 }}
                       className="text-center py-10"
                     >
-                      <div className="w-16 h-16 bg-lumio-accent/20 text-lumio-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                      <div className="w-16 h-16 bg-lumio-accent/15 text-lumio-accent rounded-full flex items-center justify-center mx-auto mb-6">
                         <CheckCircle className="w-8 h-8" />
                       </div>
-                      <h3 className="text-2xl font-serif text-white mb-4">Audit Request Received</h3>
-                      <p className="text-sm text-white/60 leading-relaxed">
+                      <h3 className="text-2xl font-serif text-lumio-ink mb-4">Audit Request Received</h3>
+                      <p className="text-sm text-lumio-ink-soft leading-relaxed">
                         We've received your audit request! Our team will conduct a comprehensive visibility audit and build your competitive gap analysis. Look out for your custom 90-day action plan in your inbox within 48 business hours.
                       </p>
                     </motion.div>

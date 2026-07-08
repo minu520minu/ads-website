@@ -5,15 +5,15 @@
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "DM Serif Display", serif;
   
-  --color-lumio-ink: #0f1117;
-  --color-lumio-ink-soft: #3d4052;
-  --color-lumio-ink-muted: #7a7f96;
-  --color-lumio-accent: #4F6EF7;
-  --color-lumio-accent-light: #EEF1FE;
-  --color-lumio-accent-deep: #2E4DD4;
-  --color-lumio-teal: #0BBFA0;
-  --color-lumio-teal-light: #E0F8F4;
-  --color-lumio-surface: #F7F8FC;
+  --color-lumio-ink: #0F172A;
+  --color-lumio-ink-soft: #334155;
+  --color-lumio-ink-muted: #64748B;
+  --color-lumio-accent: #6366F1;
+  --color-lumio-accent-light: #EEF2FF;
+  --color-lumio-accent-deep: #4338CA;
+  --color-lumio-teal: #00A896;
+  --color-lumio-teal-light: #EAFDFB;
+  --color-lumio-surface: #F8FAFC;
   --color-lumio-white: #ffffff;
 
   --animate-scroll: scroll 35s linear infinite;

@@ -1,7 +1,5 @@
 import { LucideIcon } from 'lucide-react';
 
-export type ViewState = 'home' | 'chinese-marketing' | 'case-studies' | 'case-detail' | 'free-seo-audit' | 'insights' | 'insight-detail' | 'about';
-
 export interface Article {
   id: string;
   category: string;

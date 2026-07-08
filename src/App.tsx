@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
-import { ViewState, Project, Article } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
@@ -11,27 +11,25 @@ import { FreeSeoAuditView } from './components/FreeSeoAuditView';
 import { InsightsView } from './components/InsightsView';
 import { InsightDetailView } from './components/InsightDetailView';
 import { AboutView } from './components/AboutView';
-import { PROJECTS } from './data/projects';
-import { INSIGHTS_ARTICLES } from './data/articles';
+import { PrivacyPolicyView } from './components/PrivacyPolicyView';
 
-function App() {
-  const [view, setView] = useState<ViewState>('home');
-  const [selectedProject, setSelectedProject] = useState<Project>(PROJECTS[0]);
-  const [selectedArticle, setSelectedArticle] = useState<Article>(INSIGHTS_ARTICLES[0]);
+function AppContent() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [activeServiceId, setActiveServiceId] = useState('paid');
   const [scrollContactPending, setScrollContactPending] = useState(false);
 
-  // Simple scroll top on view change (only if not waiting to scroll to contact)
+  // Scroll to top on navigation (except if we're on Home and waiting to scroll to contact)
   useEffect(() => {
-    if (view !== 'home' || !scrollContactPending) {
+    if (location.pathname !== '/' || !scrollContactPending) {
       window.scrollTo(0, 0);
     }
-  }, [view, scrollContactPending]);
+  }, [location.pathname, scrollContactPending]);
 
-  // Handle smooth scroll to contact once home view is active
+  // Handle smooth scroll to contact once we are on the homepage
   useEffect(() => {
-    if (view === 'home' && scrollContactPending) {
-      // Reset scroll position to top instantly when Home page mounts
+    if (location.pathname === '/' && scrollContactPending) {
+      // Reset scroll position to top instantly
       window.scrollTo(0, 0);
 
       let attempts = 0;
@@ -51,78 +49,72 @@ function App() {
 
       return () => clearInterval(interval);
     }
-  }, [view, scrollContactPending]);
+  }, [location.pathname, scrollContactPending]);
 
   return (
     <div className="min-h-screen bg-white font-sans text-lumio-ink selection:bg-lumio-accent/10 selection:text-lumio-accent">
-      <Navbar currentView={view} setView={setView} setActiveServiceId={setActiveServiceId} />
+      <Navbar 
+        setActiveServiceId={setActiveServiceId} 
+        setScrollContactPending={setScrollContactPending}
+      />
       
       <main>
         <AnimatePresence mode="wait">
-          {view === 'home' && (
-            <HomeView 
-              key="home"
-              setView={setView} 
-              setSelectedProject={setSelectedProject}
-              activeServiceId={activeServiceId}
-              setActiveServiceId={setActiveServiceId}
-            />
-          )}
-          {view === 'chinese-marketing' && (
-            <ChineseMarketingView 
-              key="chinese"
-              setView={setView} 
-            />
-          )}
-          {view === 'case-studies' && (
-            <CaseStudiesView 
-              key="cases"
-              setView={setView} 
-              setSelectedProject={setSelectedProject} 
-            />
-          )}
-          {view === 'case-detail' && (
-            <CaseDetailView 
-              key="case-detail"
-              project={selectedProject} 
-              setView={setView} 
-            />
-          )}
-          {view === 'free-seo-audit' && (
-            <FreeSeoAuditView 
-              key="seo"
-              setView={setView} 
-            />
-          )}
-          {view === 'insights' && (
-            <InsightsView 
-              key="insights"
-              setView={setView} 
-              setSelectedArticle={setSelectedArticle} 
-            />
-          )}
-          {view === 'insight-detail' && (
-            <InsightDetailView 
-              key="insight-detail"
-              article={selectedArticle} 
-              setView={setView} 
-            />
-          )}
-          {view === 'about' && (
-            <AboutView 
-              key="about"
-              setView={setView} 
-              onContactClick={() => {
-                setView('home');
-                setScrollContactPending(true);
-              }}
-            />
-          )}
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={
+              <HomeView 
+                key="home"
+                activeServiceId={activeServiceId}
+                setActiveServiceId={setActiveServiceId}
+              />
+            } />
+            <Route path="/chinese-marketing" element={
+              <ChineseMarketingView key="chinese" />
+            } />
+            <Route path="/case-studies" element={
+              <CaseStudiesView key="cases" />
+            } />
+            <Route path="/case-studies/:id" element={
+              <CaseDetailView key="case-detail" />
+            } />
+            <Route path="/free-seo-audit" element={
+              <FreeSeoAuditView key="seo" />
+            } />
+            <Route path="/insights" element={
+              <InsightsView key="insights" />
+            } />
+            <Route path="/insights/:id" element={
+              <InsightDetailView key="insight-detail" />
+            } />
+            <Route path="/about" element={
+              <AboutView 
+                key="about"
+                onContactClick={() => {
+                  setScrollContactPending(true);
+                  navigate('/');
+                }}
+              />
+            } />
+            <Route path="/privacy-policy" element={
+              <PrivacyPolicyView key="privacy" />
+            } />
+          </Routes>
         </AnimatePresence>
       </main>
 
-      <Footer setView={setView} setActiveServiceId={setActiveServiceId} />
+      <Footer 
+        setActiveServiceId={setActiveServiceId} 
+        setScrollContactPending={setScrollContactPending}
+      />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

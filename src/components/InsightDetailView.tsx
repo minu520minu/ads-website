@@ -1,14 +1,37 @@
 import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
-import { Article, ViewState } from '../types';
+import ReactMarkdown from 'react-markdown';
+import { INSIGHTS_ARTICLES } from '../data/articles';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
-interface InsightDetailViewProps {
-  article: Article;
-  setView: (v: ViewState) => void;
-}
+export function InsightDetailView() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const article = INSIGHTS_ARTICLES.find(a => a.id === id);
 
-export function InsightDetailView({ article, setView }: InsightDetailViewProps) {
+  useDocumentMeta({
+    title: article ? `${article.title}` : 'Insight Not Found',
+    description: article ? `${article.desc}` : 'The requested insight article could not be found.',
+    canonicalPath: article ? `/insights/${article.id}` : '/insights',
+    image: article?.image,
+  });
+
+  if (!article) {
+    return (
+      <div className="pt-32 px-6 max-w-7xl mx-auto text-center min-h-[50vh] flex flex-col justify-center items-center">
+        <h1 className="text-3xl font-serif text-lumio-ink mb-4">Insight Not Found</h1>
+        <button 
+          onClick={() => navigate('/insights')}
+          className="btn btn-primary cursor-pointer"
+        >
+          Back to Insights
+        </button>
+      </div>
+    );
+  }
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
@@ -18,8 +41,8 @@ export function InsightDetailView({ article, setView }: InsightDetailViewProps) 
     >
       <div className="max-w-3xl mx-auto px-6 py-20">
         <button 
-          onClick={() => setView('insights')}
-          className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-lumio-accent mb-12 hover:translate-x-[-4px] transition-transform cursor-pointer"
+          onClick={() => navigate('/insights')}
+          className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-lumio-accent mb-12 hover:translate-x-[-4px] transition-transform cursor-pointer text-left"
         >
           <ArrowLeft size={14} /> Back to Insights
         </button>
@@ -44,23 +67,68 @@ export function InsightDetailView({ article, setView }: InsightDetailViewProps) 
           <img src={article.image} alt={article.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
         </div>
 
-        <div className="prose prose-lumio max-w-none">
-          <p className="text-lg leading-relaxed text-lumio-ink-soft mb-8">
-            This article explores the critical nuances of {article.title.toLowerCase()}. In today’s rapidly evolving market, {article.category === 'Market Strategy' ? 'understanding structural momentum' : 'mastering platform dynamics'} is no longer optional—it is the baseline for scaled growth.
-          </p>
-          <h3 className="text-2xl font-serif text-lumio-ink mt-12 mb-6">The Core Thesis</h3>
-          <p className="text-base leading-relaxed text-lumio-ink-muted mb-8">
-            Most brands fail to scale because they treat every customer segment with a monolithic strategy. By decoupling growth channels and tailoring {article.category.toLowerCase()} to specific cultural and behavioral segments, we unlock a competitive advantage that competitors simply cannot replicate with automated generic playbooks.
-          </p>
-          <div className="bg-lumio-surface p-10 rounded-[2rem] border border-lumio-ink/5 my-12">
-            <h4 className="text-base font-bold text-lumio-ink mb-4">Strategic Takeaway</h4>
-            <p className="text-sm text-lumio-ink-soft italic leading-relaxed">
-              "Performance is not just about spend; it's about the precision of the message matching the context of the platform."
-            </p>
-          </div>
-          <p className="text-base leading-relaxed text-lumio-ink-muted mb-8">
-             We will continue to track the performance data across our client portfolio to provide further updates on these {article.category.toLowerCase()} trends.
-          </p>
+        <div className="prose prose-lumio max-w-none text-lumio-ink">
+          <ReactMarkdown
+            components={{
+              p: ({ children }) => (
+                <p className="text-base md:text-lg leading-relaxed text-lumio-ink-soft mb-6">
+                  {children}
+                </p>
+              ),
+              h1: ({ children }) => (
+                <h1 className="text-3xl md:text-4xl font-serif text-lumio-ink mt-10 mb-4 leading-tight">
+                  {children}
+                </h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-2xl md:text-3xl font-serif text-lumio-ink mt-8 mb-4 leading-tight">
+                  {children}
+                </h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-xl md:text-2xl font-serif text-lumio-ink mt-8 mb-3 leading-tight">
+                  {children}
+                </h3>
+              ),
+              h4: ({ children }) => (
+                <h4 className="text-lg md:text-xl font-bold text-lumio-ink mt-6 mb-2">
+                  {children}
+                </h4>
+              ),
+              strong: ({ children }) => {
+                // If a paragraph consists entirely of a bold line, let's treat it as a subheader for better visual hierarchy!
+                const text = String(children);
+                if (text.startsWith('What Is') || text.startsWith('Why It Works') || text.startsWith('Three Things') || text.startsWith('Who Should') || text.startsWith('Mistake') || text.startsWith('The One Thing') || text.startsWith('The Difference') || text.startsWith('The Numbers') || text.startsWith('How to Find') || text.startsWith('Fix 1') || text.startsWith('Fix 2') || text.startsWith('Fix 3') || text.startsWith('The Bigger Picture') || text.startsWith('Why Cultural') || text.startsWith('The Key Insight') || text.startsWith('Three Practical') || text.startsWith('The Long-Term') || text.startsWith('How Google') || text.startsWith('What Low-Quality') || text.startsWith('Start With') || text.startsWith('Timing Is') || text.startsWith('The Platforms') || text.startsWith('What to Actually') || text.startsWith('What WeChat') || text.startsWith('The Two Types') || text.startsWith('How to Register') || text.startsWith('Your First 30 Days') || text.startsWith('Growing Your') || text.startsWith('The Bottom Line') || text.startsWith('The Community') || text.startsWith('What This Means') || text.startsWith('The Review') || text.startsWith('Turning Trust') || text.startsWith('Recent Newcomers') || text.startsWith('Established Community') || text.startsWith('Where the Two') || text.startsWith('Building a Strategy')) {
+                  return <span className="block text-xl md:text-2xl font-serif text-lumio-ink mt-10 mb-4 font-normal">{children}</span>;
+                }
+                return <strong className="font-bold text-lumio-ink">{children}</strong>;
+              },
+              ul: ({ children }) => (
+                <ul className="list-disc list-inside space-y-2 mb-6 text-lumio-ink-soft pl-4">
+                  {children}
+                </ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="list-decimal list-inside space-y-2 mb-6 text-lumio-ink-soft pl-4">
+                  {children}
+                </ol>
+              ),
+              li: ({ children }) => (
+                <li className="text-base leading-relaxed">
+                  {children}
+                </li>
+              ),
+              blockquote: ({ children }) => (
+                <div className="bg-lumio-surface p-6 md:p-8 rounded-[1.5rem] border-l-4 border-lumio-accent my-8">
+                  <p className="text-sm md:text-base text-lumio-ink-soft italic leading-relaxed">
+                    {children}
+                  </p>
+                </div>
+              ),
+            }}
+          >
+            {article.content || ''}
+          </ReactMarkdown>
         </div>
 
         <div className="mt-20 pt-12 border-t border-lumio-ink/10">
@@ -71,7 +139,7 @@ export function InsightDetailView({ article, setView }: InsightDetailViewProps) 
             </p>
             <button 
               onClick={() => {
-                setView('home');
+                navigate('/');
                 setTimeout(() => {
                   const contactSection = document.getElementById('contact');
                   if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });

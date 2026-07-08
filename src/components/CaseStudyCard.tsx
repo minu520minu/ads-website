@@ -1,18 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { Project, ViewState } from '../types';
+import { Project } from '../types';
 
 interface CaseStudyCardProps {
   project: Project;
-  setView: (v: ViewState) => void;
-  setSelectedProject: (p: Project) => void;
 }
 
-export function CaseStudyCard({ project, setView, setSelectedProject }: CaseStudyCardProps) {
+export function CaseStudyCard({ project }: CaseStudyCardProps) {
+  const navigate = useNavigate();
   return (
     <div 
       className="group bg-white rounded-3xl border border-lumio-ink/5 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full cursor-pointer"
-      onClick={() => { setSelectedProject(project); setView('case-detail'); window.scrollTo(0, 0); }}
+      onClick={() => { navigate(`/case-studies/${project.id}`); window.scrollTo(0, 0); }}
     >
       <div className={`p-12 text-center ${project.bg} transition-transform duration-500 group-hover:scale-[1.02]`}>
         <div className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-4 ${project.accent}`}>

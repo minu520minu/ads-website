@@ -1,13 +1,35 @@
 import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Project, ViewState } from '../types';
+import { PROJECTS } from '../data/projects';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
-interface CaseDetailViewProps {
-  project: Project;
-  setView: (v: ViewState) => void;
-}
+export function CaseDetailView() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const project = PROJECTS.find(p => p.id === id);
 
-export function CaseDetailView({ project, setView }: CaseDetailViewProps) {
+  useDocumentMeta({
+    title: project ? `${project.client} Case Study: ${project.title}` : 'Case Study Not Found',
+    description: project ? `How we achieved ${project.result} for ${project.client}. Learn about the challenge, strategy, and key performance outcomes.` : 'The requested case study could not be found.',
+    canonicalPath: project ? `/case-studies/${project.id}` : '/case-studies',
+    image: project?.image,
+  });
+
+  if (!project) {
+    return (
+      <div className="pt-32 px-6 max-w-7xl mx-auto text-center min-h-[50vh] flex flex-col justify-center items-center">
+        <h1 className="text-3xl font-serif text-lumio-ink mb-4">Case Study Not Found</h1>
+        <button 
+          onClick={() => navigate('/case-studies')}
+          className="btn btn-primary cursor-pointer"
+        >
+          Back to Case Studies
+        </button>
+      </div>
+    );
+  }
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }} 
@@ -18,7 +40,7 @@ export function CaseDetailView({ project, setView }: CaseDetailViewProps) {
       <section className={`py-12 md:py-16 px-6 md:px-12 ${project.bg}`}>
         <div className="max-w-7xl mx-auto">
           <button 
-            onClick={() => { setView('case-studies'); window.scrollTo(0, 0); }}
+            onClick={() => { navigate('/case-studies'); window.scrollTo(0, 0); }}
             className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-lumio-ink/40 hover:text-lumio-accent transition-colors mb-6 cursor-pointer"
           >
             ← Back to All Cases
@@ -104,7 +126,7 @@ export function CaseDetailView({ project, setView }: CaseDetailViewProps) {
               <div className="text-[10px] font-bold uppercase tracking-widest text-lumio-ink/20 mb-6">Want results like these?</div>
               <button 
                 onClick={() => {
-                  setView('home');
+                  navigate('/');
                   setTimeout(() => {
                     const contactSection = document.getElementById('contact');
                     if (contactSection) {
@@ -125,7 +147,7 @@ export function CaseDetailView({ project, setView }: CaseDetailViewProps) {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-serif mb-12">See more cases.</h2>
           <button 
-            onClick={() => { setView('case-studies'); window.scrollTo(0, 0); }}
+            onClick={() => { navigate('/case-studies'); window.scrollTo(0, 0); }}
             className="btn btn-primary px-12 cursor-pointer"
           >
             View All Case Studies
