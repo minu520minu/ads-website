@@ -94,7 +94,7 @@ export function ServicesTabs({ activeId, setActiveId }: ServicesTabsProps) {
                 <div className="mt-auto pt-8 border-t border-lumio-ink/5">
                   {svc.id === 'chinese' && (
                     <button 
-                      onClick={() => { navigate('/chinese-marketing'); window.scrollTo(0,0); }}
+                      onClick={() => { navigate('/Chinese-Consumer-Marketing'); window.scrollTo(0,0); }}
                       className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer text-left"
                     >
                       Get Your Free Chinese Market Audit <ArrowRight size={14} />

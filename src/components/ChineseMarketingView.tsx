@@ -53,7 +53,7 @@ export function ChineseMarketingView() {
   useDocumentMeta({
     title: 'Chinese Consumer Marketing & Xiaohongshu (Rednote) Agency',
     description: 'Unlock high-spending Chinese diaspora and global markets. Expert management of Rednote (Xiaohongshu), WeChat, WeChat Pay, and Chinese micro-influencer (KOL) campaigns.',
-    canonicalPath: '/chinese-marketing',
+    canonicalPath: '/Chinese-Consumer-Marketing',
   });
 
   const stats = [

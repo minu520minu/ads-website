@@ -35,7 +35,7 @@ export function Footer({ setActiveServiceId, setScrollContactPending }: FooterPr
                 <button 
                   onClick={() => {
                     if (link.id === 'chinese') { 
-                      navigate('/chinese-marketing'); 
+                      navigate('/Chinese-Consumer-Marketing'); 
                       window.scrollTo(0, 0); 
                     } else if (link.id === 'seo') {
                       navigate('/free-seo-audit');

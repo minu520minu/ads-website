@@ -68,7 +68,7 @@ function AppContent() {
                 setActiveServiceId={setActiveServiceId}
               />
             } />
-            <Route path="/chinese-marketing" element={
+            <Route path="/Chinese-Consumer-Marketing" element={
               <ChineseMarketingView key="chinese" />
             } />
             <Route path="/case-studies" element={
