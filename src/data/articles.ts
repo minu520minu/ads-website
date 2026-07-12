@@ -399,7 +399,7 @@ The trust economy is harder to enter than the attention economy. But once you ar
     date: 'March 2026',
     readTime: '4 min read',
     image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1200',
-    content: `One of the most important and most overlooked distinctions in Chinese market marketing is the difference between recent newcomers and established Chinese Canadian or Chinese American community members. These two groups share an ethnic background, but they have quite different digital habits, platform preferences, purchase behaviours, and even language preferences. A strategy designed for one group will often miss the other almost entirely.
+    content: `One of the most important and most overlooked distinctions in Chinese consumer marketing is the difference between recent newcomers and established Chinese Canadian or Chinese American community members. These two groups share an ethnic background, but they have quite different digital habits, platform preferences, purchase behaviours, and even language preferences. A strategy designed for one group will often miss the other almost entirely.
 
 Understanding this distinction will help you build a more targeted and more effective approach.
 

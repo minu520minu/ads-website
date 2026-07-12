@@ -211,7 +211,7 @@ export function AboutView({ onContactClick }: AboutViewProps) {
               icon: Share2,
             },
             {
-              title: "Chinese Market Marketing",
+              title: "Chinese Consumer Marketing",
               desc: "Our specialist capability. We help brands grow within the Chinese community through WeChat, Rednote, Douyin, bilingual paid ads, KOL partnerships, and culturally intelligent campaign execution.",
               icon: Globe,
               featured: true

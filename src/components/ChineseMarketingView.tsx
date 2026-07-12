@@ -20,7 +20,6 @@ import { PACKAGES } from '../data/services';
 import { 
   CHINESE_MARKET_STEPS, 
   FAQS, 
-  CHINESE_SEASONS, 
   CHINESE_SERVICES, 
   CHINESE_ADDONS 
 } from '../data/chineseMarketing';
@@ -80,7 +79,7 @@ export function ChineseMarketingView() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-[9px] font-bold uppercase tracking-[0.2em] text-lumio-accent block mb-8"
               >
-                Chinese Market Marketing
+                Chinese Consumer Marketing
               </motion.span>
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
@@ -204,6 +203,64 @@ export function ChineseMarketingView() {
               </div>
             ))}
           </div>
+
+          {/* Partnered Influencers Callout */}
+          <motion.div 
+            whileHover={{ y: -4, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            className="mt-12 p-6 md:p-8 bg-gradient-to-r from-lumio-accent/[0.08] via-lumio-accent/[0.02] to-lumio-teal/[0.08] border border-lumio-accent/20 rounded-3xl flex flex-col md:flex-row items-center gap-6 text-left shadow-md relative overflow-hidden"
+          >
+            {/* Background Accent glow */}
+            <div className="absolute -right-24 -bottom-24 w-48 h-48 bg-lumio-teal/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -left-24 -top-24 w-48 h-48 bg-lumio-accent/10 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Overlapping Creator Facepile */}
+            <div className="flex -space-x-3.5 overflow-hidden shrink-0 py-1">
+              <img 
+                className="inline-block h-12 w-12 rounded-full ring-2 ring-white object-cover shadow-md" 
+                src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=120&h=120&q=80" 
+                alt="Chinese Creator 1" 
+                referrerPolicy="no-referrer"
+              />
+              <img 
+                className="inline-block h-12 w-12 rounded-full ring-2 ring-white object-cover shadow-md" 
+                src="https://images.unsplash.com/photo-1705247814998-7e36dc7cd92e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="Chinese Creator 2" 
+                referrerPolicy="no-referrer"
+              />
+              <img 
+                className="inline-block h-12 w-12 rounded-full ring-2 ring-white object-cover shadow-md" 
+                src="https://images.unsplash.com/photo-1546415324-dd7ea5ba3cea?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNoaW5lc2UlMjBpbmZsdWVuY2VyfGVufDB8fDB8fHww" 
+                alt="Chinese Creator 3" 
+                referrerPolicy="no-referrer"
+              />
+              <img 
+                className="inline-block h-12 w-12 rounded-full ring-2 ring-white object-cover shadow-md" 
+                src="https://images.unsplash.com/photo-1534083220759-4c3c00112ea0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="Chinese Creator 4" 
+                referrerPolicy="no-referrer"
+              />
+              <div className="flex items-center justify-center h-12 w-12 rounded-full bg-lumio-accent text-white text-[11px] font-bold ring-2 ring-white font-sans shrink-0 shadow-md">
+                +55K
+              </div>
+            </div>
+
+            {/* Content Text */}
+            <div className="flex-1 flex flex-col gap-1.5 z-10">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-lumio-accent bg-lumio-accent/10 px-2 py-0.5 rounded-md">
+                  Global Network
+                </span>
+                <span className="inline-flex items-center gap-1 text-[9px] font-bold text-lumio-teal uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-lumio-teal animate-pulse" />
+                  Verified Partners
+                </span>
+              </div>
+              <p className="text-[14px] md:text-[15px] text-lumio-ink font-medium leading-relaxed">
+                We have direct partnerships with over <span className="text-lumio-accent font-bold">55,000+ active Chinese influencers and key opinion leaders (KOLs)</span> all over the world, ready to authentically amplify your brand to high-value consumer groups.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -509,27 +566,6 @@ export function ChineseMarketingView() {
         
         {/* Background Decorative glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lumio-accent/5 rounded-full blur-[120px] -z-10" />
-      </section>
-
-      {/* Cultural Calendar */}
-      <section className="section-padding bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <SectionTitle 
-            eyebrow="Cultural Calendar" 
-            title="Moments that matter most." 
-            description="We help you show up authentically during the celebrations that drive the highest consumer spend."
-          />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CHINESE_SEASONS.map((season, i) => (
-              <div key={i} className="bg-lumio-surface p-5 rounded-xl border border-lumio-ink/5 hover:border-lumio-accent/10 transition-all">
-                <div className="text-2xl mb-3">{season.icon}</div>
-                <h4 className="text-sm font-bold mb-1 text-lumio-ink">{season.name}</h4>
-                <div className="text-[8px] font-bold text-lumio-accent uppercase tracking-widest mb-2 italic">{season.date}</div>
-                <p className="text-[11px] text-lumio-ink-muted leading-relaxed">{season.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       <div id="contact-chinese">

@@ -97,7 +97,7 @@ export function Navbar({ setActiveServiceId, setScrollContactPending }: NavbarPr
                 : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
             }`}
           >
-            Chinese Market Marketing
+            Chinese Consumer Marketing
           </Link>
           <Link 
             to="/case-studies"
@@ -154,7 +154,7 @@ export function Navbar({ setActiveServiceId, setScrollContactPending }: NavbarPr
             <div className="p-6 flex flex-col gap-4">
               <Link to="/" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Home</Link>
               <Link to="/free-seo-audit" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Free SEO Audit</Link>
-              <Link to="/chinese-marketing" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Chinese Market Marketing</Link>
+              <Link to="/chinese-marketing" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Chinese Consumer Marketing</Link>
               <Link to="/case-studies" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Case Studies</Link>
               <Link to="/insights" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Insights</Link>
               <button 

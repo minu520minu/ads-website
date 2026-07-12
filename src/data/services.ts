@@ -23,7 +23,7 @@ export const GENERAL_SERVICES: Service[] = [
     highlights: [
       'Full-funnel strategy from awareness to conversion',
       'Creative testing and iteration built into every campaign',
-      'Weekly reporting with revenue attribution, not just clicks'
+      'Comprehensive reporting with revenue attribution, not just clicks'
     ]
   },
   {
@@ -57,9 +57,9 @@ export const GENERAL_SERVICES: Service[] = [
   },
   {
     id: 'chinese',
-    title: 'Chinese Market Marketing',
+    title: 'Chinese Consumer Marketing',
     tagline: 'The market your competitors can\'t reach.',
-    description: 'We help brands reach and convert the Chinese community. While your competitors overlook 50 million consumers worldwide, you can be the business they recommend to everyone they know.',
+    description: 'We help brands reach and convert the Chinese community. While your competitors overlook 50 million Chinese consumers worldwide, you can be the business they recommend to everyone they know.',
     icon: Globe,
     badge: 'FREE MARKET REPORT',
     items: [
@@ -70,8 +70,10 @@ export const GENERAL_SERVICES: Service[] = [
       { name: 'Bilingual Copy', desc: 'Localization, not translation' }
     ],
     highlights: [
-      'Native cultural intelligence that makes your brand feel local, not foreign',
+      'RedNote content creation built around what actually drives Chinese consumers',
+      'KOL campaigns that get you discovered by Chinese customers and tourists in your city',
       'Full platform setup and verification handled for you, including WeChat Official Account',
+      'Native cultural fluency so your content feels like a local recommendation, not a foreign brand',
       'Precision targeting to reach high-spending Chinese consumers locally and globally'
     ]
   }

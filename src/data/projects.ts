@@ -75,7 +75,7 @@ export const PROJECTS: Project[] = [
     id: 'ufc-coconut',
     client: 'UFC Coconut Water',
     title: 'Breaking Into the Canadian Market Through the North American Chinese Community',
-    category: 'Beverage · Chinese Market Marketing',
+    category: 'Beverage · Chinese Consumer Marketing',
     result: '312% sales increase and 2.4 million impressions in the North American Chinese community',
     tags: ['KOL', 'WeChat', 'Rednote'],
     bg: 'bg-[#E3F2FD]',

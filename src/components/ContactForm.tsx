@@ -105,7 +105,7 @@ export function ContactForm() {
                 <option>Paid Media</option>
                 <option>SEO</option>
                 <option>Influencer Marketing</option>
-                <option>Chinese Market Marketing</option>
+                <option>Chinese Consumer Marketing</option>
                 <option>Full-Service / Other</option>
               </select>
             </div>

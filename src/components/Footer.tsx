@@ -29,7 +29,7 @@ export function Footer({ setActiveServiceId, setScrollContactPending }: FooterPr
               { name: 'Paid Media', id: 'paid' },
               { name: 'SEO', id: 'seo' },
               { name: 'Influencer', id: 'influencer' },
-              { name: 'Chinese Market Marketing', id: 'chinese' }
+              { name: 'Chinese Consumer Marketing', id: 'chinese' }
             ].map(link => (
               <li key={link.name}>
                 <button 
