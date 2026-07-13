@@ -66,9 +66,10 @@ function AppContent() {
                 key="home"
                 activeServiceId={activeServiceId}
                 setActiveServiceId={setActiveServiceId}
+                setScrollContactPending={setScrollContactPending}
               />
             } />
-            <Route path="/Chinese-Consumer-Marketing" element={
+            <Route path="/chinese-consumer-marketing" element={
               <ChineseMarketingView key="chinese" />
             } />
             <Route path="/case-studies" element={

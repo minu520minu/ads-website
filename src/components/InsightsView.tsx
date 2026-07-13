@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { INSIGHTS_ARTICLES } from '../data/articles';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
@@ -36,16 +36,16 @@ export function InsightsView() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12 gap-y-16">
             {INSIGHTS_ARTICLES.map((article, i) => (
-              <div 
+              <Link 
                 key={i} 
-                className="group cursor-pointer"
+                to={`/insights/${article.id}`}
                 onClick={() => {
-                  navigate(`/insights/${article.id}`);
                   window.scrollTo(0, 0);
                 }}
+                className="group cursor-pointer block text-left decoration-none"
               >
                 <div className="bg-lumio-surface aspect-[4/3] rounded-[1.5rem] mb-6 overflow-hidden border border-lumio-ink/5 transition-all group-hover:border-lumio-accent/20">
-                  <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
+                  <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" loading="lazy" />
                 </div>
                 <div className="text-[9px] font-bold text-lumio-accent uppercase tracking-widest mb-3">{article.category}</div>
                 <h3 className="text-xl font-serif text-lumio-ink mb-3 group-hover:text-lumio-accent transition-colors">{article.title}</h3>
@@ -55,7 +55,7 @@ export function InsightsView() {
                   <span>•</span>
                   <span>{article.readTime}</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

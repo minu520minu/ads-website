@@ -1,16 +1,18 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { GENERAL_SERVICES } from '../data/services';
 
 interface ServicesTabsProps {
   activeId: string;
   setActiveId: (id: string) => void;
+  setScrollContactPending: (pending: boolean) => void;
 }
 
-export function ServicesTabs({ activeId, setActiveId }: ServicesTabsProps) {
+export function ServicesTabs({ activeId, setActiveId, setScrollContactPending }: ServicesTabsProps) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="flex flex-col lg:flex-row border border-lumio-ink/10 rounded-2xl overflow-hidden bg-white shadow-sm min-h-[550px]">
@@ -94,7 +96,7 @@ export function ServicesTabs({ activeId, setActiveId }: ServicesTabsProps) {
                 <div className="mt-auto pt-8 border-t border-lumio-ink/5">
                   {svc.id === 'chinese' && (
                     <button 
-                      onClick={() => { navigate('/Chinese-Consumer-Marketing'); window.scrollTo(0,0); }}
+                      onClick={() => { navigate('/chinese-consumer-marketing'); window.scrollTo(0,0); }}
                       className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer text-left"
                     >
                       Get Your Free Chinese Market Audit <ArrowRight size={14} />
@@ -109,14 +111,36 @@ export function ServicesTabs({ activeId, setActiveId }: ServicesTabsProps) {
                     </button>
                   )}
                   {svc.id === 'paid' && (
-                    <a href="#contact" className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer">
+                    <button 
+                      onClick={() => {
+                        if (location.pathname === '/') {
+                          const el = document.getElementById('contact');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                          setScrollContactPending(true);
+                          navigate('/');
+                        }
+                      }}
+                      className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer text-left"
+                    >
                       Scale Your Customer Acquisition <ArrowRight size={14} />
-                    </a>
+                    </button>
                   )}
                   {svc.id === 'influencer' && (
-                    <a href="#contact" className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer">
+                    <button 
+                      onClick={() => {
+                        if (location.pathname === '/') {
+                          const el = document.getElementById('contact');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                          setScrollContactPending(true);
+                          navigate('/');
+                        }
+                      }}
+                      className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer text-left"
+                    >
                       Find The Right Creators <ArrowRight size={14} />
-                    </a>
+                    </button>
                   )}
                 </div>
               </motion.div>

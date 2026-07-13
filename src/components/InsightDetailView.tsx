@@ -64,7 +64,7 @@ export function InsightDetailView() {
         </div>
 
         <div className="aspect-video rounded-[2.5rem] overflow-hidden mb-16 border border-lumio-ink/5 shadow-inner bg-lumio-surface">
-          <img src={article.image} alt={article.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          <img src={article.image} alt={article.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
         </div>
 
         <div className="prose prose-lumio max-w-none text-lumio-ink">

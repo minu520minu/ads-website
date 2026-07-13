@@ -27,7 +27,7 @@ export function PrivacyPolicyView() {
         <div className="flex flex-wrap items-center gap-4 text-xs text-lumio-ink-muted">
           <span className="font-bold uppercase tracking-wider text-lumio-ink">Lumio</span>
           <span className="w-1.5 h-1.5 rounded-full bg-lumio-ink/20" />
-          <span>Effective Date: January 7, 2025</span>
+          <span>Effective Date: July 12, 2026</span>
         </div>
       </div>
 

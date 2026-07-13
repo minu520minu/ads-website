@@ -15,9 +15,10 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 interface HomeViewProps {
   activeServiceId: string;
   setActiveServiceId: (id: string) => void;
+  setScrollContactPending: (pending: boolean) => void;
 }
 
-export function HomeView({ activeServiceId, setActiveServiceId }: HomeViewProps) {
+export function HomeView({ activeServiceId, setActiveServiceId, setScrollContactPending }: HomeViewProps) {
   const navigate = useNavigate();
   const [currentProjectIndex, setCurrentProjectIndex] = useState(PROJECTS.length);
   const [shouldAnimate, setShouldAnimate] = useState(true);
@@ -159,6 +160,7 @@ export function HomeView({ activeServiceId, setActiveServiceId }: HomeViewProps)
         <ServicesTabs 
           activeId={activeServiceId} 
           setActiveId={setActiveServiceId} 
+          setScrollContactPending={setScrollContactPending}
         />
       </section>
 
