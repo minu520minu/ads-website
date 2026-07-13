@@ -441,6 +441,8 @@ export function ChineseMarketingView() {
                       <p className="text-xs text-lumio-ink-muted mb-6 italic">Delivered to your inbox within 48 business hours.</p>
                       
                       <form 
+                        action="/submit"
+                        method="POST"
                         onSubmit={async (e) => { 
                           e.preventDefault(); 
                           const formData = new FormData(e.currentTarget);
@@ -454,8 +456,6 @@ export function ChineseMarketingView() {
                             console.error('Form submission failed:', error);
                           }
                         }} 
-                        method="POST"
-                        action="/submit"
                         className="space-y-4"
                       >
                         <div className="grid grid-cols-2 gap-4">

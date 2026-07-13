@@ -47,9 +47,9 @@ export function ContactForm() {
           </motion.div>
         ) : (
           <form 
-            onSubmit={handleSubmit} 
-            method="POST"
             action="/submit"
+            method="POST"
+            onSubmit={handleSubmit} 
             className="bg-white border border-lumio-ink/10 p-6 md:p-8 rounded-2xl space-y-4 shadow-xl"
           >
             <div className="grid md:grid-cols-2 gap-4">
