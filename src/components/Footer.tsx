@@ -101,12 +101,12 @@ export function Footer({ setActiveServiceId, setScrollContactPending }: FooterPr
         <div>
           <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-6">Connect</h4>
             <div className="flex gap-4 mb-6">
-              <a href="https://www.instagram.com/lumiopartner/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-slate-300 hover:bg-lumio-accent hover:text-white transition-all cursor-pointer">
+              <a href="https://www.instagram.com/lumioreach/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-slate-300 hover:bg-lumio-accent hover:text-white transition-all cursor-pointer">
                 <Instagram size={18} />
               </a>
             </div>
-          <a href="mailto:hello@lumiopartner.com" className="text-sm text-slate-300 hover:text-lumio-accent flex items-center gap-2 cursor-pointer w-fit">
-            <Mail size={16} /> hello@lumiopartner.com
+          <a href="mailto:hello@lumioreach.com" className="text-sm text-slate-300 hover:text-lumio-accent flex items-center gap-2 cursor-pointer w-fit">
+            <Mail size={16} /> hello@lumioreach.com
           </a>
         </div>
       </div>

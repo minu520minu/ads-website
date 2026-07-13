@@ -5,7 +5,7 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 export function PrivacyPolicyView() {
   useDocumentMeta({
     title: 'Privacy Policy | Lumio',
-    description: 'Learn how Lumio collects, uses, and protects your personal information on lumiopartner.com.',
+    description: 'Learn how Lumio collects, uses, and protects your personal information on lumioreach.com.',
     canonicalPath: '/privacy-policy',
   });
 
@@ -36,8 +36,8 @@ export function PrivacyPolicyView() {
           <h2 className="text-xl font-bold text-lumio-ink tracking-tight font-serif">1. Introduction</h2>
           <p>
             Lumio (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the website{' '}
-            <a href="https://lumiopartner.com" className="text-lumio-accent hover:underline font-medium">
-              lumiopartner.com
+            <a href="https://lumioreach.com" className="text-lumio-accent hover:underline font-medium">
+              lumioreach.com
             </a>
             . This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website or engage with our services.
           </p>
@@ -150,8 +150,8 @@ export function PrivacyPolicyView() {
           <div className="bg-lumio-surface p-6 rounded-2xl border border-lumio-ink/5 mt-4 space-y-1">
             <div className="font-bold text-lumio-ink text-[14px]">Lumio</div>
             <div>
-              <a href="mailto:hello@lumiopartner.com" className="text-lumio-accent hover:underline text-[14px]">
-                hello@lumiopartner.com
+              <a href="mailto:hello@lumioreach.com" className="text-lumio-accent hover:underline text-[14px]">
+                hello@lumioreach.com
               </a>
             </div>
           </div>

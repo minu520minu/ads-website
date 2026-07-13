@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lumiopartner.com/sitemap.xml
+Sitemap: https://lumioreach.com/sitemap.xml

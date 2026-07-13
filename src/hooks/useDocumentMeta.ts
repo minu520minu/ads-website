@@ -10,7 +10,7 @@ interface DocumentMetaProps {
 }
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1481437156560-3205f6a55735?q=100&w=2400&auto=format&fit=crop';
-const BASE_URL = 'https://lumiopartner.com';
+const BASE_URL = 'https://lumioreach.com';
 
 export function useDocumentMeta({
   title,
