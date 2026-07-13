@@ -6,27 +6,20 @@ import { SectionTitle } from './SectionTitle';
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const firstName = formData.get('firstName') as string;
-    const lastName = formData.get('lastName') as string;
-    const email = formData.get('email') as string;
-    const company = formData.get('company') as string;
-    const service = formData.get('service') as string;
-    const goals = formData.get('goals') as string;
-
-    const subject = encodeURIComponent(`Lumio Enquiry from ${firstName} ${lastName} (${company})`);
-    const body = encodeURIComponent(
-      `Name: ${firstName} ${lastName}\n` +
-      `Email: ${email}\n` +
-      `Company: ${company}\n` +
-      `Service Interest: ${service}\n\n` +
-      `Goals:\n${goals}`
-    );
+    const formData = new FormData(e.currentTarget);
 
     setSubmitted(true);
-    window.location.href = `mailto:wooximarketing@gmail.com?subject=${subject}&body=${body}`;
+
+    try {
+      await fetch('/submit', {
+        method: 'POST',
+        body: formData,
+      });
+    } catch (error) {
+      console.error('Form submission failed:', error);
+    }
   };
 
   return (
@@ -53,7 +46,12 @@ export function ContactForm() {
             <p className="text-lumio-ink-soft text-xs">Our team will be in touch within one business day.</p>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="bg-white border border-lumio-ink/10 p-6 md:p-8 rounded-2xl space-y-4 shadow-xl">
+          <form 
+            onSubmit={handleSubmit} 
+            method="POST"
+            action="/submit"
+            className="bg-white border border-lumio-ink/10 p-6 md:p-8 rounded-2xl space-y-4 shadow-xl"
+          >
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">First Name <span className="text-lumio-accent">*</span></label>

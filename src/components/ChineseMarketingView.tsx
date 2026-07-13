@@ -441,28 +441,21 @@ export function ChineseMarketingView() {
                       <p className="text-xs text-lumio-ink-muted mb-6 italic">Delivered to your inbox within 48 business hours.</p>
                       
                       <form 
-                        onSubmit={(e) => { 
+                        onSubmit={async (e) => { 
                           e.preventDefault(); 
-                          const formData = new FormData(e.target as HTMLFormElement);
-                          const firstName = formData.get('firstName') as string;
-                          const lastName = formData.get('lastName') as string;
-                          const email = formData.get('email') as string;
-                          const company = formData.get('company') as string;
-                          const comp1 = formData.get('competitor1') as string;
-                          const comp2 = formData.get('competitor2') as string;
-
-                          const subject = encodeURIComponent(`Free Chinese Market Audit Request from ${firstName} ${lastName}`);
-                          const body = encodeURIComponent(
-                            `Name: ${firstName} ${lastName}\n` +
-                            `Email: ${email}\n` +
-                            `Company: ${company}\n` +
-                            `Competitor 1: ${comp1 || 'None'}\n` +
-                            `Competitor 2: ${comp2 || 'None'}`
-                          );
-
+                          const formData = new FormData(e.currentTarget);
                           setAuditSubmitted(true); 
-                          window.location.href = `mailto:wooximarketing@gmail.com?subject=${subject}&body=${body}`;
+                          try {
+                            await fetch('/submit', {
+                              method: 'POST',
+                              body: formData,
+                            });
+                          } catch (error) {
+                            console.error('Form submission failed:', error);
+                          }
                         }} 
+                        method="POST"
+                        action="/submit"
                         className="space-y-4"
                       >
                         <div className="grid grid-cols-2 gap-4">

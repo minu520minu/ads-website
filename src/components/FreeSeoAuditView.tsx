@@ -77,20 +77,37 @@ export function FreeSeoAuditView() {
                     <h3 className="text-2xl font-serif text-lumio-ink mb-2">Get your free audit</h3>
                     <p className="text-xs text-lumio-ink-muted mb-8 italic">Delivered to your inbox within 48 hours.</p>
                     
-                    <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
+                    <form 
+                      onSubmit={async (e) => { 
+                        e.preventDefault(); 
+                        const formData = new FormData(e.currentTarget);
+                        setSubmitted(true); 
+                        try {
+                          await fetch('/submit', {
+                            method: 'POST',
+                            body: formData,
+                          });
+                        } catch (error) {
+                          console.error('Form submission failed:', error);
+                        }
+                      }} 
+                      method="POST"
+                      action="/submit"
+                      className="space-y-4"
+                    >
                       <div className="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="First Name" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
-                        <input type="text" placeholder="Last Name" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
+                        <input name="firstName" type="text" placeholder="First Name" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
+                        <input name="lastName" type="text" placeholder="Last Name" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
                       </div>
-                      <input type="email" placeholder="Business Email" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
-                      <input type="url" placeholder="Website URL (e.g. https://yourbrand.com)" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
-                      <select className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans appearance-none text-lumio-ink-muted text-gray-500">
-                        <option>Select Business Type</option>
-                        <option>E-commerce</option>
-                        <option>Local Business</option>
-                        <option>SaaS / Tech</option>
-                        <option>Professional Services</option>
-                        <option>Other</option>
+                      <input name="email" type="email" placeholder="Business Email" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
+                      <input name="websiteUrl" type="url" placeholder="Website URL (e.g. https://yourbrand.com)" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
+                      <select name="businessType" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans appearance-none text-lumio-ink-muted text-gray-500">
+                        <option value="">Select Business Type</option>
+                        <option value="E-commerce">E-commerce</option>
+                        <option value="Local Business">Local Business</option>
+                        <option value="SaaS / Tech">SaaS / Tech</option>
+                        <option value="Professional Services">Professional Services</option>
+                        <option value="Other">Other</option>
                       </select>
                       <button 
                         type="submit"
