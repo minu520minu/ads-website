@@ -441,14 +441,14 @@ export function ChineseMarketingView() {
                       <p className="text-xs text-lumio-ink-muted mb-6 italic">Delivered to your inbox within 48 business hours.</p>
                       
                       <form 
-                        action="/submit"
+                        action="https://web3forms.com"
                         method="POST"
                         onSubmit={async (e) => { 
                           e.preventDefault(); 
                           const formData = new FormData(e.currentTarget);
                           setAuditSubmitted(true); 
                           try {
-                            await fetch('/submit', {
+                            await fetch('https://api.web3forms.com/submit', {
                               method: 'POST',
                               body: formData,
                             });
@@ -458,6 +458,7 @@ export function ChineseMarketingView() {
                         }} 
                         className="space-y-4"
                       >
+                        <input type="hidden" name="access_key" value="080106f1-826e-4bf3-929f-65c3e6de976c" />
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-1">
                             <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">First Name <span className="text-lumio-accent">*</span></label>

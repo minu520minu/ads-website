@@ -13,7 +13,7 @@ export function ContactForm() {
     setSubmitted(true);
 
     try {
-      await fetch('/submit', {
+      await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData,
       });
@@ -47,11 +47,12 @@ export function ContactForm() {
           </motion.div>
         ) : (
           <form 
-            action="/submit"
+            action="https://web3forms.com"
             method="POST"
             onSubmit={handleSubmit} 
             className="bg-white border border-lumio-ink/10 p-6 md:p-8 rounded-2xl space-y-4 shadow-xl"
           >
+            <input type="hidden" name="access_key" value="080106f1-826e-4bf3-929f-65c3e6de976c" />
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[9px] font-bold uppercase tracking-wider text-lumio-ink-soft/85">First Name <span className="text-lumio-accent">*</span></label>

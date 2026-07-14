@@ -78,14 +78,14 @@ export function FreeSeoAuditView() {
                     <p className="text-xs text-lumio-ink-muted mb-8 italic">Delivered to your inbox within 48 hours.</p>
                     
                     <form 
-                      action="/submit"
+                      action="https://web3forms.com"
                       method="POST"
                       onSubmit={async (e) => { 
                         e.preventDefault(); 
                         const formData = new FormData(e.currentTarget);
                         setSubmitted(true); 
                         try {
-                          await fetch('/submit', {
+                          await fetch('https://api.web3forms.com/submit', {
                             method: 'POST',
                             body: formData,
                           });
@@ -95,6 +95,7 @@ export function FreeSeoAuditView() {
                       }} 
                       className="space-y-4"
                     >
+                      <input type="hidden" name="access_key" value="080106f1-826e-4bf3-929f-65c3e6de976c" />
                       <div className="grid grid-cols-2 gap-4">
                         <input name="firstName" type="text" placeholder="First Name" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
                         <input name="lastName" type="text" placeholder="Last Name" className="w-full px-4 py-3 rounded-xl border border-lumio-ink/10 text-sm focus:border-lumio-accent outline-none bg-white font-sans" required />
