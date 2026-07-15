@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react'; // Add AnimatePresence here
 import { HERO_SLIDES } from '../data/services';
 
 export function HeroSlideshow() {
   const [index, setIndex] = useState(0);
+  
+  // We no longer need prevIndex!
+
+  // Preload all slideshow images on initial mount
+  useEffect(() => {
+    HERO_SLIDES.forEach((slide) => {
+      if (slide.type === 'image') {
+        const img = new Image();
+        img.src = slide.url;
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -12,27 +24,31 @@ export function HeroSlideshow() {
     return () => clearInterval(timer);
   }, []);
 
+  // Grab the current slide data
+  const currentSlide = HERO_SLIDES[index];
+
   return (
-    <div className="absolute inset-0 w-full h-full">
-      <AnimatePresence>
+    <div className="absolute inset-0 w-full h-full bg-lumio-ink overflow-hidden">
+      {/* AnimatePresence handles the crossfade automatically when the key changes */}
+      <AnimatePresence initial={false}>
         <motion.div
-          key={index}
+          key={index} // Changing this key tells Framer Motion to trigger the exit/initial animations
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
+          exit={{ opacity: 0 }} // This tells the OLD slide to fade out smoothly
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 w-full h-full"
         >
-          {HERO_SLIDES[index].type === 'image' && (
+          {currentSlide.type === 'image' && (
             <img 
-              src={HERO_SLIDES[index].url} 
-              alt={HERO_SLIDES[index].label} 
+              src={currentSlide.url} 
+              alt={currentSlide.label} 
               className="w-full h-full object-cover bg-lumio-ink"
               referrerPolicy="no-referrer"
-              loading="eager"
             />
           )}
-          {/* Multi-layered overlay for premium feel - Dynamic based on photo contrast needs */}
+          
+          {/* Multi-layered overlay */}
           <div className={`absolute inset-0 backdrop-blur-[1px] ${[0, 3, 4].includes(index) ? 'bg-lumio-ink/60' : 'bg-lumio-ink/25'}`} />
           <div className={`absolute inset-0 bg-gradient-to-b via-transparent ${
             [0, 3, 4].includes(index) 
