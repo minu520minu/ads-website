@@ -26,10 +26,10 @@ export function Footer({ setActiveServiceId, setScrollContactPending }: FooterPr
           <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-6">Services</h4>
           <ul className="space-y-4">
             {[
+              { name: 'Chinese Consumer Marketing', id: 'chinese' },
               { name: 'Paid Media', id: 'paid' },
               { name: 'SEO', id: 'seo' },
-              { name: 'Influencer', id: 'influencer' },
-              { name: 'Chinese Consumer Marketing', id: 'chinese' }
+              { name: 'Influencer', id: 'influencer' }
             ].map(link => (
               <li key={link.name}>
                 <button 

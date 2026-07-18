@@ -8,6 +8,28 @@ import { Service, Package, HeroSlide } from '../types';
 
 export const GENERAL_SERVICES: Service[] = [
   {
+    id: 'chinese',
+    title: 'Chinese Consumer Marketing',
+    tagline: 'The market your competitors can\'t reach.',
+    description: 'We help brands reach and convert the Chinese community. While your competitors overlook 50 million Chinese consumers worldwide, you can be the business they recommend to everyone they know.',
+    icon: Globe,
+    badge: 'FREE VISIBILITY REPORT',
+    items: [
+      { name: 'WeChat Marketing', desc: 'Official accounts & Mini-programs' },
+      { name: 'Rednote', desc: 'KOL seeding & content creation' },
+      { name: 'Douyin Marketing', desc: 'Short-form social commerce' },
+      { name: 'Chinese-Targeted Paid Ads', desc: 'Laser-targeted bilingual creative' },
+      { name: 'Bilingual Copy', desc: 'Localization, not translation' }
+    ],
+    highlights: [
+      'RedNote content creation built around what actually drives Chinese consumers',
+      'KOL campaigns that get you discovered by Chinese customers and tourists in your city',
+      'Full platform setup and verification handled for you, including WeChat Official Account',
+      'Native cultural fluency so your content feels like a local recommendation, not a foreign brand',
+      'Precision targeting to reach high-spending Chinese consumers locally and globally'
+    ]
+  },
+  {
     id: 'paid',
     title: 'Paid Media',
     tagline: 'Performance advertising that actually performs.',
@@ -54,28 +76,6 @@ export const GENERAL_SERVICES: Service[] = [
       { name: 'UGC Strategy', desc: 'Content licensing for ads' }
     ],
     highlights: ['Niche community access', 'Conversion tracking', 'Cultural resonance']
-  },
-  {
-    id: 'chinese',
-    title: 'Chinese Consumer Marketing',
-    tagline: 'The market your competitors can\'t reach.',
-    description: 'We help brands reach and convert the Chinese community. While your competitors overlook 50 million Chinese consumers worldwide, you can be the business they recommend to everyone they know.',
-    icon: Globe,
-    badge: 'FREE MARKET REPORT',
-    items: [
-      { name: 'WeChat Marketing', desc: 'Official accounts & Mini-programs' },
-      { name: 'Rednote', desc: 'KOL seeding & content creation' },
-      { name: 'Douyin Marketing', desc: 'Short-form social commerce' },
-      { name: 'Chinese-Targeted Paid Ads', desc: 'Laser-targeted bilingual creative' },
-      { name: 'Bilingual Copy', desc: 'Localization, not translation' }
-    ],
-    highlights: [
-      'RedNote content creation built around what actually drives Chinese consumers',
-      'KOL campaigns that get you discovered by Chinese customers and tourists in your city',
-      'Full platform setup and verification handled for you, including WeChat Official Account',
-      'Native cultural fluency so your content feels like a local recommendation, not a foreign brand',
-      'Precision targeting to reach high-spending Chinese consumers locally and globally'
-    ]
   }
 ];
 
@@ -83,76 +83,78 @@ export const PACKAGES: Package[] = [
   {
     name: 'Reach',
     badge: 'Starter',
-    tagline: 'Get visible in the Chinese community for the first time.',
+    tagline: 'For businesses that want to get visible in the Chinese community for the first time.',
     features: [
-      'Chinese Consumer Market Audit',
-      'Platform account setup & verification',
-      '4 bilingual posts per month',
-      'Community management on 1 platform (comments & DMs)',
-      'Monthly performance report'
+      'Chinese Consumer visibility Audit',
+      'RedNote account setup and optimization',
+      'Initial Chinese content tailored to your audience',
+      'Keyword, competitor and platform research',
+      'Performance review and next-step recommendations',
+      '4 posts on Rednote and ongoing management',
+      'Performance review and future recommendations'
     ],
-    ideal: 'Ideal for local shops, restaurants & service businesses'
+    ideal: 'Ideal for businesses that want to explore the opportunity before making a larger commitment'
   },
   {
     name: 'Grow',
     badge: 'Most Popular',
     featured: true,
-    tagline: 'Build presence and drive traffic with paid ads.',
+    tagline: 'For businesses ready to create a consistent presence among Chinese-speaking consumers.',
     features: [
       'Everything in the Reach plan, plus:',
-      '1 social platform fully managed',
-      '4 bilingual posts per month',
-      'Paid ads management on 1 platform',
-      'Active community management',
-      'Seasonal campaign planning'
+      'Ongoing Chinese content strategy and creation',
+      'RedNote publishing and account management',
+      'Video editing tailored for Chinese social platforms',
+      'Comment and message monitoring',
+      'Monthly performance insights'
     ],
-    ideal: 'Ideal for retailers, real estate & e-commerce brands'
+    ideal: 'Ideal for local shops, restaurants & service businesses'
   },
   {
     name: 'Scale',
     badge: 'Full Service',
-    tagline: 'Dominate every channel your target customer uses.',
+    tagline: 'For brands that want to combine content, creators and community distribution across multiple channels.',
     features: [
       'Everything in the Grow plan, plus:',
-      'Bilingual Copywriting & Localization',
-      '2 KOL campaigns per month',
-      'Curated creatives for Chinese audience',
-      '4 bilingual posts per month',
-      'Paid ads with full management and optimization'
+      'Up to 2 locations or regional market variations',
+      'Douyin content adaptation',
+      'Chinese KOL and KOC campaign management',
+      'WeChat community placements',
+      'Multi-market strategy and reporting'
     ],
-    ideal: 'Ideal for established brands serious about Chinese market growth'
+    ideal: 'Ideal for established brands & e-commerce brands serious about Chinese market growth'
   }
 ];
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1481437156560-3205f6a55735?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: 'https://images.unsplash.com/photo-1481437156560-3205f6a55735?q=80&w=1600&auto=format&fit=crop',
     label: 'Market Momentum'
   },
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1739950839930-ef45c078f316?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: 'https://images.unsplash.com/photo-1739950839930-ef45c078f316?q=80&w=1600&auto=format&fit=crop',
     label: 'Precision Growth'
   },
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1556764900-fa065610b0e4?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: 'https://images.unsplash.com/photo-1556764900-fa065610b0e4?q=80&w=1600&auto=format&fit=crop',
     label: 'High-End Execution'
   },
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1571168136613-46401b03904e?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: 'https://images.unsplash.com/photo-1571168136613-46401b03904e?q=80&w=1600&auto=format&fit=crop',
     label: 'Strategic Vision'
   },
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1776802792422-6f436418ec56?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: 'https://images.unsplash.com/photo-1776802792422-6f436418ec56?q=80&w=1600&auto=format&fit=crop',
     label: 'Creative Excellence'
   },
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1739980155900-36562bcb7857?q=100&w=2400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    url: 'https://images.unsplash.com/photo-1739980155900-36562bcb7857?q=80&w=1600&auto=format&fit=crop',
     label: 'Global Impact'
   }
 ];

@@ -1,5 +1,5 @@
 export const CHINESE_MARKET_STEPS = [
-  { id: '01', title: 'Market Audit', description: 'We assess your brand\'s current visibility and opportunity within the Chinese community, including competitive gaps and platform fit.' },
+  { id: '01', title: 'Visibility Audit', description: 'We assess your brand\'s current visibility and opportunity within the Chinese community, including competitive gaps and platform fit.' },
   { id: '02', title: 'Platform Setup', description: 'We handle WeChat Official Account registration, Rednote profile setup, and all technical verification. The hardest step for non-Chinese brands, done for you.' },
   { id: '03', title: 'Content & Campaign', description: 'Our bilingual team creates culturally resonant content, manages KOL partnerships, and runs paid campaigns targeted at the right audiences.' },
   { id: '04', title: 'Growth & Scale', description: 'We optimize based on real conversion data, expand to new platforms, and layer in seasonal campaigns around key Chinese cultural moments.' }
@@ -82,18 +82,28 @@ export const CHINESE_SERVICES = [
 
 export const CHINESE_ADDONS = [
   {
-    name: 'Account Setup & Verification',
-    desc: 'We handle the complete setup, corporate registration, and official verification for your verified brand accounts on WeChat and Rednote.',
-    icon: 'Smartphone'
-  },
-  {
-    name: 'KOL Seeding Pilot',
-    desc: 'A one-time seeding campaign with 5 to 10 micro-influencers on Rednote to test community reaction, build initial search footprints, and generate UGC.',
+    name: 'Chinese Creator Campaigns',
+    desc: 'Reach Chinese-speaking consumers through trusted local KOLs. We offer full management from planning to execution. You approve every creator and cost before anything is booked.',
     icon: 'Users'
   },
   {
-    name: 'Bilingual Copywriting & Localization',
-    desc: 'Culturally adapted, localized translation of your primary landing pages, product listings, or menus. Ensuring your brand voice resonates natively.',
-    icon: 'Type'
+    name: 'Local Chinese Discovery',
+    desc: 'Designed for local-based shops, restaurants and services retailers. We set up your presence, localize your existing assets, and create the content on Chinese platforms.',
+    icon: 'Search'
+  },
+  {
+    name: 'WeChat Editorial Placements',
+    desc: 'Put your business in front of established Chinese-speaking communities through WeChat community posts and articles published by reputable public accounts.',
+    icon: 'MessageSquare'
+  },
+  {
+    name: 'Chinese-Platform Advertising',
+    desc: 'Turn your strongest content into targeted paid campaigns. We handle campaign setup, targeting, budget management, ongoing optimization and reporting.',
+    icon: 'BarChart'
+  },
+  {
+    name: 'Custom Chinese Social Video',
+    desc: 'Create original short-form videos designed for RedNote and Douyin, including Chinese-market concepts, scripts, filming and editing.',
+    icon: 'Smartphone'
   }
 ];

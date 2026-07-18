@@ -99,7 +99,7 @@ export function ServicesTabs({ activeId, setActiveId, setScrollContactPending }:
                       onClick={() => { navigate('/chinese-consumer-marketing'); window.scrollTo(0,0); }}
                       className="text-xs font-bold text-lumio-accent flex items-center gap-2 hover:gap-3 transition-all cursor-pointer text-left"
                     >
-                      Get Your Free Chinese Market Audit <ArrowRight size={14} />
+                      Get Your Free Chinese Consumer Visibility Report <ArrowRight size={14} />
                     </button>
                   )}
                   {svc.id === 'seo' && (

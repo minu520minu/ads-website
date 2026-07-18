@@ -18,7 +18,6 @@ import {
 } from 'lucide-react';
 import { PACKAGES } from '../data/services';
 import { 
-  CHINESE_MARKET_STEPS, 
   FAQS, 
   CHINESE_SERVICES, 
   CHINESE_ADDONS 
@@ -110,7 +109,7 @@ export function ChineseMarketingView() {
                   }}
                   className="btn btn-primary px-10 py-4 shadow-xl shadow-lumio-accent/20 text-[10px] uppercase tracking-widest font-bold cursor-pointer"
                 >
-                  Free Chinese Market Audit
+                  Free Visibility Report
                 </button>
                 <a href="#packages" className="btn bg-lumio-ink/5 border border-lumio-ink/10 text-lumio-ink px-10 py-4 hover:bg-lumio-ink/10 transition-colors uppercase tracking-widest text-[10px] font-bold cursor-pointer text-center">
                   See our packages
@@ -179,36 +178,13 @@ export function ChineseMarketingView() {
       {/* Main Content Area (Light) */}
       <div className="bg-white rounded-t-[4rem]">
 
-      {/* How it works */}
-      <section className="section-padding bg-white">
+      {/* Partnered Influencers Callout */}
+      <section className="pt-16 pb-4 bg-white px-6">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle 
-            eyebrow="How it works" 
-            title="Simplified market entry." 
-            description="We handle the complexity of entering the Chinese market so your team doesn't have to."
-          />
-          <div className="grid md:grid-cols-4 gap-0 border border-lumio-ink/5 rounded-[2.5rem] overflow-hidden bg-white shadow-lg">
-            {CHINESE_MARKET_STEPS.map((step, idx) => (
-              <div key={idx} className={`p-8 border-b md:border-b-0 md:border-r border-lumio-ink/5 last:border-0 relative group hover:bg-lumio-surface transition-colors`}>
-                <div className="text-4xl font-serif text-lumio-accent/10 mb-6 group-hover:text-lumio-accent/20 transition-colors uppercase italic">{step.id}</div>
-                <h4 className="text-base font-bold mb-3 flex items-center gap-2">
-                  {step.title}
-                  {step.title === 'Market Audit' && (
-                    <span className="bg-emerald-500/10 text-emerald-500 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest font-sans">
-                      Free
-                    </span>
-                  )}
-                </h4>
-                <p className="text-[13px] text-lumio-ink-muted leading-relaxed">{step.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Partnered Influencers Callout */}
           <motion.div 
             whileHover={{ y: -4, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="mt-12 p-6 md:p-8 bg-gradient-to-r from-lumio-accent/[0.08] via-lumio-accent/[0.02] to-lumio-teal/[0.08] border border-lumio-accent/20 rounded-3xl flex flex-col md:flex-row items-center gap-6 text-left shadow-md relative overflow-hidden"
+            className="p-6 md:p-8 bg-gradient-to-r from-lumio-accent/[0.08] via-lumio-accent/[0.02] to-lumio-teal/[0.08] border border-lumio-accent/20 rounded-3xl flex flex-col md:flex-row items-center gap-6 text-left shadow-md relative overflow-hidden"
           >
             {/* Background Accent glow */}
             <div className="absolute -right-24 -bottom-24 w-48 h-48 bg-lumio-teal/10 rounded-full blur-3xl pointer-events-none" />
@@ -367,12 +343,12 @@ export function ChineseMarketingView() {
           />
           <div className="grid md:grid-cols-3 gap-4">
             {CHINESE_ADDONS.map((addon, i) => (
-              <div key={i} className="bg-lumio-surface p-6 rounded-2xl border border-lumio-ink/5 hover:border-lumio-accent/20 transition-all group flex flex-col items-start text-left">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mb-4 shadow-sm text-lumio-accent">
-                  <LucideIcon name={addon.icon} className="w-4 h-4" />
+              <div key={i} className="bg-lumio-surface p-5 rounded-[1.5rem] border border-lumio-ink/5 hover:border-lumio-accent/20 transition-all group flex flex-col items-start text-left">
+                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center mb-4 group-hover:bg-lumio-accent group-hover:text-white transition-all text-lumio-accent shadow-sm">
+                  <LucideIcon name={addon.icon} className="w-3.5 h-3.5" />
                 </div>
-                <h4 className="text-base font-bold mb-2 text-lumio-ink">{addon.name}</h4>
-                <p className="text-[12px] text-lumio-ink-muted leading-relaxed mb-6">{addon.desc}</p>
+                <h4 className="text-base font-serif mb-1.5 text-lumio-ink">{addon.name}</h4>
+                <p className="text-[11px] text-lumio-ink-muted leading-relaxed mb-4">{addon.desc}</p>
               </div>
             ))}
           </div>
@@ -385,14 +361,14 @@ export function ChineseMarketingView() {
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 text-left">
               <span className="bg-lumio-teal-light text-lumio-teal text-[9px] font-bold px-3 py-1.5 rounded-full tracking-[0.2em] uppercase inline-block mb-6 font-sans">
-                FREE CHINESE MARKET AUDIT
+                FREE VISIBILITY REPORT
               </span>
               <h2 className="text-3xl md:text-4xl font-serif leading-[1.2] mb-6 text-lumio-ink">
                 Get your free Chinese <br />
-                <span className="italic text-lumio-accent font-normal">market visibility audit.</span>
+                <span className="italic text-lumio-accent font-normal">consumer visibility audit.</span>
               </h2>
               <p className="text-sm text-lumio-ink-soft leading-relaxed mb-8 max-w-lg">
-                Full Chinese market visibility audit, competitive gap analysis, and a 90-day recommended action plan. 
+                Full Chinese consumer visibility audit, competitive gap analysis, and a 90-day recommended action plan.
               </p>
               
               <div className="space-y-4 pt-4 border-t border-lumio-ink/10 max-w-lg">
@@ -437,7 +413,7 @@ export function ChineseMarketingView() {
                       exit={{ opacity: 0 }}
                       className="text-left"
                     >
-                      <h3 className="text-xl font-serif text-lumio-ink mb-2">Request Your Free Audit</h3>
+                      <h3 className="text-xl font-serif text-lumio-ink mb-2">Request Your Free Visibility Report</h3>
                       <p className="text-xs text-lumio-ink-muted mb-6 italic">Delivered to your inbox within 48 business hours.</p>
                       
                       <form 
@@ -529,27 +505,27 @@ export function ChineseMarketingView() {
                           type="submit"
                           className="w-full btn btn-primary py-4 uppercase tracking-widest text-[10px] font-bold cursor-pointer mt-2"
                         >
-                          Request Free Audit →
+                          Request Free Report →
                         </button>
                         <p className="text-[9px] text-center text-lumio-ink-muted/65 italic">
-                          🔒 Your information is secure and only used for your audit.
+                          🔒 Your information is secure and only used for your report.
                         </p>
                       </form>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-10"
-                    >
-                      <div className="w-16 h-16 bg-lumio-accent/15 text-lumio-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="w-8 h-8" />
-                      </div>
-                      <h3 className="text-2xl font-serif text-lumio-ink mb-4">Audit Request Received</h3>
-                      <p className="text-sm text-lumio-ink-soft leading-relaxed">
-                        We've received your audit request! Our team will conduct a comprehensive visibility audit and build your competitive gap analysis. Look out for your custom 90-day action plan in your inbox within 48 business hours.
-                      </p>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="success"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-center py-10"
+                      >
+                        <div className="w-16 h-16 bg-lumio-accent/15 text-lumio-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                          <CheckCircle className="w-8 h-8" />
+                        </div>
+                        <h3 className="text-2xl font-serif text-lumio-ink mb-4">Report Request Received</h3>
+                        <p className="text-sm text-lumio-ink-soft leading-relaxed">
+                          We've received your request! Our team will conduct a comprehensive visibility audit and build your competitive gap analysis. Look out for your custom 90-day action plan in your inbox within 48 business hours.
+                        </p>
                     </motion.div>
                   )}
                 </AnimatePresence>

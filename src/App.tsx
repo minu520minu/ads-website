@@ -16,7 +16,7 @@ import { PrivacyPolicyView } from './components/PrivacyPolicyView';
 function AppContent() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [activeServiceId, setActiveServiceId] = useState('paid');
+  const [activeServiceId, setActiveServiceId] = useState('chinese');
   const [scrollContactPending, setScrollContactPending] = useState(false);
 
   // Scroll to top on navigation (except if we're on Home and waiting to scroll to contact)

@@ -78,17 +78,6 @@ export function Navbar({ setActiveServiceId, setScrollContactPending }: NavbarPr
             </div>
           </div>
           <Link 
-            to="/free-seo-audit"
-            onClick={() => { window.scrollTo(0,0); }}
-            className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
-              location.pathname === '/free-seo-audit' 
-                ? 'text-lumio-accent' 
-                : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
-            }`}
-          >
-            Free SEO Audit
-          </Link>
-          <Link 
             to="/chinese-consumer-marketing"
             onClick={() => { window.scrollTo(0, 0); }}
             className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
@@ -98,6 +87,17 @@ export function Navbar({ setActiveServiceId, setScrollContactPending }: NavbarPr
             }`}
           >
             Chinese Consumer Marketing
+          </Link>
+          <Link 
+            to="/free-seo-audit"
+            onClick={() => { window.scrollTo(0,0); }}
+            className={`text-sm font-medium transition-all duration-300 cursor-pointer ${
+              location.pathname === '/free-seo-audit' 
+                ? 'text-lumio-accent' 
+                : useDarkNav ? 'text-lumio-ink-soft hover:text-lumio-ink' : 'text-white/80 hover:text-white'
+            }`}
+          >
+            Free SEO Audit
           </Link>
           <Link 
             to="/case-studies"
@@ -153,8 +153,8 @@ export function Navbar({ setActiveServiceId, setScrollContactPending }: NavbarPr
           >
             <div className="p-6 flex flex-col gap-4">
               <Link to="/" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Home</Link>
-              <Link to="/free-seo-audit" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Free SEO Audit</Link>
               <Link to="/chinese-consumer-marketing" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Chinese Consumer Marketing</Link>
+              <Link to="/free-seo-audit" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Free SEO Audit</Link>
               <Link to="/case-studies" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Case Studies</Link>
               <Link to="/insights" onClick={() => { setIsOpen(false); window.scrollTo(0,0); }} className="text-left py-2 font-medium text-lumio-ink hover:text-lumio-accent transition-colors cursor-pointer">Insights</Link>
               <button 
